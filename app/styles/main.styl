@@ -1,0 +1,78 @@
+ShockMain = #9c2f33
+Highlight = #3AA9E8
+HighlightThin = #154A69
+#page-header
+  background-color ShockMain
+  color #FFF
+  .brand
+    display inline-block
+    margin 0 0 0 16px
+  nav
+    display inline-block
+    margin-left 6em
+  ul
+    display inline-block
+    padding 0
+    margin 0
+  li
+    display inline-block
+    list-style none
+    margin 0
+    padding 4px 6pt
+    cursor pointer
+    a
+      color #FFF
+      text-decoration none
+    &:hover
+      background-color lighten(ShockMain, 15%)
+    &.active
+      background-color Highlight
+      a
+        color HighlightThin
+/* 新聞 - 搜尋區塊 */
+#news-search-field
+  margin 36px 0 18px 0
+#search-news-container
+  float right
+  .search-input-wrapper
+    position relative
+    &:before
+      content '\f002'
+      font-family FontAwesome
+      font-style normal
+      font-weight normal
+      text-decoration inherit
+      color #555
+      font-size 12pt
+      padding-right .5em
+      position absolute
+      top 4px
+      left 10px
+      text-shadow 1px 1px 0 #F7F7F7
+    input
+      outline none
+      height 24pt
+      line-height 12pt
+      font-size 12pt
+      padding 0 0 0 32px
+      border-radius 12pt
+      border 1px solid #DDD
+      color #444
+      text-shadow 1px 1px 2px #EAEAEA
+      width 200px
+      background-color #FAFAFA
+/* 新聞 - 重點新聞 */
+#news-features
+  margin 28px 0
+  border 1px solid #DFDFDF
+  padding 16px 0
+  .brand
+    overflow hidden
+  .features
+    article
+      h1
+        font-size 14pt
+        line-height 16.5pt
+      p
+        font-size 9pt
+        color #7F7F7F

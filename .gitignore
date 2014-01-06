@@ -1,0 +1,13 @@
+node_modules
+public
+.tmp
+.sass-cache
+app/bower_components
+heroku
+views
+partials/*.html
+app/scripts/*.js
+app/styles/*.css
+app/scripts/controllers/*.js
+app/scripts/services/*.js
+*.map
