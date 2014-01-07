@@ -200,6 +200,12 @@ module.exports = function (grunt) {
           src: '{,*/}*.coffee',
           dest: './lib/controllers',
           ext: '.js'
+        }, {
+          expand: true,
+          cwd: './src/controllers/publish',
+          src: '{,*/}*.coffee',
+          dest: './lib/controllers/publish',
+          ext: '.js'
         }]
       },
       models: {

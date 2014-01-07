@@ -28,7 +28,7 @@ var api = require('./lib/controllers/api'),
     index = require('./lib/controllers');
 
 // Server Routes
-app.post('/api/publish/login', api.publishLogin)
+app.post('/api/publish/login', api.publish.login)
 //app.get('/api/awesomeThings', api.awesomeThings);
 
 // Angular Routes

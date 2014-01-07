@@ -13,6 +13,7 @@ Member = new mongoose.Schema
   type:
     type: String
     enum: ['guest', 'shock']
+  privileges: [String]
     
 # Validate Email
 Member.path('email').validate (email)->
