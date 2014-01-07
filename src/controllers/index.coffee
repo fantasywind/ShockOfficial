@@ -10,4 +10,4 @@ exports.partials = (req, res)->
       res.send(html)
 
 exports.index = (req, res)->
-  res.sendfile path.resolve(__dirname + '/../../app/views/index.html')
+  res.sendfile req.app.get('views') + '/index.html'
