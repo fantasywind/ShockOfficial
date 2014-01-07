@@ -147,7 +147,18 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp'
+      server: {
+        files: [{
+          src: [
+            './models/*.js',
+            '.tmp',
+            '<%= yeoman.app %>/scripts/{,*/}*.js',
+            '<%= yeoman.app %>/scripts/{,*/}*.map',
+            '<%= yeoman.app %>/styles/{,*/}*.css',
+            '<%= yeoman.app %>/views/partials/{,*/}*.html'
+          ]
+        }]
+      }
     },
 
     // Add vendor prefixed styles
@@ -178,6 +189,18 @@ module.exports = function (grunt) {
       options: {
         sourceMap: true,
         sourceRoot: ''
+      },
+      models: {
+        options: {
+          sourceMap: false
+        },
+        files: [{
+          expand: true,
+          cwd: './src/models',
+          src: '{,*/}*.coffee',
+          dest: './lib/models',
+          ext: '.js'
+        }]
       },
       dist: {
         files: [{
@@ -431,6 +454,7 @@ module.exports = function (grunt) {
       server: [
         'jade:dist',
         'stylus:dist',
+        'coffee:models',
         'coffee:dist',
         'compass:server'
       ],

@@ -17,18 +17,18 @@ fs.readdirSync(modelsPath).forEach(function (file) {
 });
 
 // Populate empty DB with dummy data
-require('./lib/db/dummydata');
+// require('./lib/db/dummydata');
 
 
 // Express Configuration
 require('./lib/config/express')(app);
 
 // Controllers
-var api = require('./lib/controllers/api'),
-    index = require('./lib/controllers');
+//var api = require('./lib/controllers/api'),
+var index = require('./lib/controllers');
 
 // Server Routes
-app.get('/api/awesomeThings', api.awesomeThings);
+//app.get('/api/awesomeThings', api.awesomeThings);
 
 // Angular Routes
 app.get('/partials/*', index.partials);
