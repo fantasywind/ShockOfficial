@@ -52,12 +52,12 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/styles/{,*/}*.styl'],
         tasks: ['stylus:dist']
       },
-      jade: {
-        files: ['<%= yeoman.app %>/views/{,*/}*.jade'],
-        tasks: ['jade:dist']
-      },
       coffee: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}'],
+        tasks: ['newer:coffee:dist']
+      },
+      controllerCoffee: {
+        files: ['<%= yeoman.app %>/scripts/controllers/{,*/}*.{coffee,litcoffee,coffee.md}'],
         tasks: ['newer:coffee:dist']
       },
       coffeeTest: {
@@ -151,11 +151,11 @@ module.exports = function (grunt) {
         files: [{
           src: [
             './models/*.js',
+            './controllers/*.js',
             '.tmp',
             '<%= yeoman.app %>/scripts/{,*/}*.js',
             '<%= yeoman.app %>/scripts/{,*/}*.map',
             '<%= yeoman.app %>/styles/{,*/}*.css',
-            '<%= yeoman.app %>/views/partials/{,*/}*.html'
           ]
         }]
       }
@@ -190,6 +190,18 @@ module.exports = function (grunt) {
         sourceMap: true,
         sourceRoot: ''
       },
+      controllers: {
+        options: {
+          sourceMap: false
+        },
+        files: [{
+          expand: true,
+          cwd: './src/controllers',
+          src: '{,*/}*.coffee',
+          dest: './lib/controllers',
+          ext: '.js'
+        }]
+      },
       models: {
         options: {
           sourceMap: false
@@ -208,6 +220,12 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>/scripts',
           src: '{,*/}*.coffee',
           dest: '<%= yeoman.app %>/scripts',
+          ext: '.js'
+        },{
+          expand: true,
+          cwd: '<%= yeoman.app %>/scripts/controllers',
+          src: '{,*/}*.coffee',
+          dest: '<%= yeoman.app %>/scripts/controllers',
           ext: '.js'
         }]
       },
@@ -452,8 +470,8 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'jade:dist',
         'stylus:dist',
+        'coffee:controllers',
         'coffee:models',
         'coffee:dist',
         'compass:server'

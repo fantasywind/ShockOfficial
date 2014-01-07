@@ -8,3 +8,4 @@ angular.module('shockApp')
       Navigation.page
     , (newPage)->
       $scope.nowPage = newPage
+      return

@@ -1,6 +1,7 @@
 ShockMain = #9c2f33
 Highlight = #3AA9E8
 HighlightThin = #154A69
+ErrorColor = #e74c3c
 #page-header
   background-color ShockMain
   color #FFF
@@ -29,6 +30,19 @@ HighlightThin = #154A69
       background-color Highlight
       a
         color HighlightThin
+  .right-field
+    position absolute
+    right 2px
+    top 3px
+    margin 0
+    button
+      background-color transparent
+      border 0
+      outline none
+      color #FAFAFA
+    .menu
+      display none
+      position relative
 /* 新聞 - 搜尋區塊 */
 #news-search-field
   margin 36px 0 18px 0
@@ -61,6 +75,36 @@ HighlightThin = #154A69
       text-shadow 1px 1px 2px #EAEAEA
       width 200px
       background-color #FAFAFA
+/* 出版系統 - 登入*/
+#loginPublish
+  padding 0
+  border 1px solid #DDD
+  margin-top 48px
+  border-radius 8px
+  box-shadow 0 0 2px #ccc
+  form
+    padding 30px 24px 4px 24px
+    button
+      outline none
+    .helper
+      color ErrorColor
+      margin 2px 0
+  header
+    border-bottom 1px solid #AAA
+    border-radius 8px 8px 0 0
+    padding 16px 14px 8px 14px
+    background-color rgba(#34495e, 0.74)
+    color #FCFCFC
+    .helper
+      margin 0
+      color #EAEAEA
+      font-family serif
+      font-size 10pt
+    h1
+      margin 0
+      padding 4px 0
+      font-size 24pt
+      font-weight normal
 /* 新聞 - 重點新聞 */
 #news-features
   margin 28px 0

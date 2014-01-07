@@ -24,10 +24,11 @@ fs.readdirSync(modelsPath).forEach(function (file) {
 require('./lib/config/express')(app);
 
 // Controllers
-//var api = require('./lib/controllers/api'),
-var index = require('./lib/controllers');
+var api = require('./lib/controllers/api'),
+    index = require('./lib/controllers');
 
 // Server Routes
+app.post('/api/publish/login', api.publishLogin)
 //app.get('/api/awesomeThings', api.awesomeThings);
 
 // Angular Routes

@@ -6,8 +6,10 @@ app/bower_components
 heroku
 views
 partials/*.html
+lib/controllers/*.js
+lib/models/*.js
 app/scripts/*.js
 app/styles/*.css
-app/scripts/controllers/*.js
-app/scripts/services/*.js
+app/scripts/*/*.js
+app/scripts/*/*/*.js
 *.map
