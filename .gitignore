@@ -4,7 +4,7 @@ public
 .sass-cache
 app/bower_components
 heroku
-views
+./views
 partials/*.html
 lib/controllers/*.js
 lib/controllers/*/*.js

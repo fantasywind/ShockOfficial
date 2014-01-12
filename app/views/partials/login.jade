@@ -1,0 +1,20 @@
+div.container
+  div.row
+    div.col-md-4.col-md-offset-4
+      div.main#loginPublish(role='login')
+        header
+          h1 登入出版系統
+          p.helper 此為內部系統僅供 Shock! 三峽客 成員使用
+        form.form-horizontal(role='form', name='publishLogin', ng-submit='login()')
+          div.form-group
+            label.col-sm-3.control-label(for='publishLoginUsername') 信箱
+            div.col-sm-9
+              input.form-control#publishLoginUsername(tabindex='1', ng-model='email', required, type='email', placeholder='請輸入 Email')
+              p.helper(ng-show='publishLogin.$error.email && !publishLogin.$pristine') 請輸入正確的信箱格式
+          div.form-group
+            label.col-sm-3.control-label(for='publishLoginPassword') 密碼
+            div.col-sm-9
+              input.form-control#publishLoginPassword(tabindex='2', ng-model='password', required, type='password', placeholder='請輸入密碼')
+          div.form-group
+            div.col-sm-offset-3.col-sm-9
+              button.btn.btn-default(type='submit') 登入系統
