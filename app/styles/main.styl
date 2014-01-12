@@ -2,6 +2,7 @@ ShockMain = #9c2f33
 Highlight = #3AA9E8
 HighlightThin = #154A69
 ErrorColor = #e74c3c
+LightBackgroundHoverColor = #FAFAFA
 #page-header
   background-color ShockMain
   color #FFF
@@ -51,16 +52,17 @@ ErrorColor = #e74c3c
   .search-input-wrapper
     position relative
     &:before
-      content '\f002'
-      font-family FontAwesome
+      content '\e003'
+      -webkit-font-smoothing antialiased
+      font-family 'Glyphicons Halflings'
       font-style normal
       font-weight normal
       text-decoration inherit
       color #555
-      font-size 12pt
+      font-size 11pt
       padding-right .5em
       position absolute
-      top 4px
+      top 7px
       left 10px
       text-shadow 1px 1px 0 #F7F7F7
     input
@@ -75,6 +77,7 @@ ErrorColor = #e74c3c
       text-shadow 1px 1px 2px #EAEAEA
       width 200px
       background-color #FAFAFA
+      padding-top 2px
 /* 出版系統 - 登入*/
 #loginPublish
   padding 0
@@ -114,9 +117,34 @@ ErrorColor = #e74c3c
     overflow hidden
   .features
     article
+      cursor pointer
+      margin-bottom 8px
       h1
         font-size 14pt
         line-height 16.5pt
       p
         font-size 9pt
         color #7F7F7F
+        margin 0
+      &:after
+        content ''
+        display block
+        position absolute
+        width 0
+        height 2px
+        background -moz-linear-gradient(left, rgba(156,47,51,1) 0%, rgba(190,58,63,0.8) 82%, rgba(198,61,66,0) 100%)
+        background -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(156,47,51,1)), color-stop(82%,rgba(190,58,63,0.8)), color-stop(100%,rgba(198,61,66,0)))
+        background -webkit-linear-gradient(left, rgba(156,47,51,1) 0%,rgba(190,58,63,0.8) 82%,rgba(198,61,66,0) 100%)
+        background -o-linear-gradient(left, rgba(156,47,51,1) 0%,rgba(190,58,63,0.8) 82%,rgba(198,61,66,0) 100%)
+        background -ms-linear-gradient(left, rgba(156,47,51,1) 0%,rgba(190,58,63,0.8) 82%,rgba(198,61,66,0) 100%)
+        background linear-gradient(to right, rgba(156,47,51,1) 0%,rgba(190,58,63,0.8) 82%,rgba(198,61,66,0) 100%)
+        transition width 0.42s ease-out
+      &:hover
+        background-color LightBackgroundHoverColor
+        &:after
+          width 255px
+      &:active
+        -o-transform scale(0.97)
+        -moz-transform scale(0.97)
+        -webkit-transform scale(0.97)
+        transform scale(0.97)
