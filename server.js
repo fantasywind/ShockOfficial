@@ -31,6 +31,9 @@ var api = require('./lib/controllers/api'),
 app.post('/api/publish/login', api.publish.login)
 //app.get('/api/awesomeThings', api.awesomeThings);
 
+// Article
+app.get('/api/news', api.article.newsPage)
+
 // Angular Routes
 app.get('/partials/*', index.partials);
 app.get('/*', index.index);
