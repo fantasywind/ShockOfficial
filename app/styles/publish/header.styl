@@ -1,0 +1,47 @@
+headerNavBackgroundColor = #FAFAFA
+headerNavBorderColor = #DDD
+headerNavBackgroundColorActive = rgba(#3498db, 0.88)
+headerNavBorderColorActive = rgba(#3498db, 0.42)
+headerNavColor = #2980b9
+
+#publish-navigation
+  margin 24px 0 18px 0
+  > a
+    display inline-block
+    text-decoration none
+    color headerNavColor
+    background-color headerNavBackgroundColor
+    border-width 1px
+    border-style solid
+    border-color headerNavBorderColor
+    padding 4px 16px
+    margin 0 6px 0 0
+    font-size 12pt
+    position relative
+    .sub
+      visibility hidden
+      position absolute
+      margin 0
+      width 112px
+      background-color #FAFAFA
+      border 1px solid #DDD
+      top 32px
+      left -1px
+      padding 0 6px
+      z-index 100
+      li
+        list-style none
+        margin 6px 0
+        text-align center
+        padding 6px 0
+        &:hover
+          background-color #ECECEC
+    &:hover
+      background-color rgba(headerNavBackgroundColorActive, 0.24)
+      border-color darken(headerNavBorderColor, 10%)
+      .sub
+        visibility visible
+    &.active
+      background-color headerNavBackgroundColorActive
+      border-color headerNavBorderColorActive
+      color #FCFCFC

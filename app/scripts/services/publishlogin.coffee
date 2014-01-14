@@ -13,6 +13,24 @@ angular.module('shockApp')
     @email = localStorage.email or $cookies.email
     @hashedPassword = localStorage.hashedPassword or $cookies.hashedPassword
 
+    # 暫存登入後執行函式
+    checked = false
+    loginedCallback = []
+    cleanLoginDo = ->
+      while fn = loginedCallback.shift()
+        fn()
+      checked = true
+
+    #######################
+    # LoginDo 登入後執行函式#
+    #######################
+
+    @loginedDo = ->
+      if checked
+        fn() for fn in arguments
+      else
+        loginedCallback.push fn for fn in arguments
+
     @doLogin = (options)->
       options ?= {}
       {email, password, success, error} = options
@@ -43,15 +61,15 @@ angular.module('shockApp')
           success()
         else
           error result.code, result.msg
+          @loginFailed()
 
-      conn.error (error)->
+      conn.error (error)=>
         @errorMessage = error
-        error()
-
+        @loginFailed()
 
     @errorMessage = ''
 
-    @loginError = ->
+    @loginFailed = ->
       localStorage.removeItem 'email'
       localStorage.removeItem 'hashedPassword'
       @email = undefined
@@ -63,6 +81,7 @@ angular.module('shockApp')
       localStorage.email = @email
       localStorage.hashedPassword = @hashedPassword
       @status = @LOGINSTATUS.LOGINED
+      cleanLoginDo()
 
     # Auto Login
     if @status is @LOGINSTATUS.UNLOGIN and @email? and @hashedPassword?

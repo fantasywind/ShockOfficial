@@ -11,7 +11,9 @@ lib/controllers/*/*.js
 lib/models/*.js
 app/scripts/*.js
 app/styles/*.css
+app/styles/*/*.css
 app/scripts/*/*.js
 app/scripts/*/*/*.js
 *.map
 config.json
+.DS_Store
