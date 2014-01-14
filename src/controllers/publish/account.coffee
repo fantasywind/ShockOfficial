@@ -1,7 +1,8 @@
 mongoose = require 'mongoose'
 Member = mongoose.model 'Member'
 crypto = require 'crypto'
-CONFIG = require __dirname + '/../../../config.json'
+path = require 'path'
+CONFIG = require path.resolve __dirname + '/../../../config.json'
 
 exports.login = (req, res)->
   if !req.body.email? or !req.body.password?
@@ -10,9 +11,15 @@ exports.login = (req, res)->
       code: 1
       msg: 'Invalid Parameter'
 
-  sha1 = crypto.createHash 'sha1'
-  sha1.update req.body.password
-  firstHash = sha1.digest 'hex'
+  mode = req.body.mode or 'plain'
+
+  if mode is 'plain'
+    sha1 = crypto.createHash 'sha1'
+    sha1.update req.body.password
+    firstHash = sha1.digest 'hex'
+  else
+    firstHash = req.body.password
+
   sha1 = crypto.createHash 'sha1'
   sha1.update firstHash.substr(0, 20) + CONFIG.ENCRYPTION_SALT + firstHash.substr(20, 20)
   salted = sha1.digest 'hex'
@@ -30,7 +37,7 @@ exports.login = (req, res)->
             req.session.privileges = member.privileges
             res.cookie 'email', member.email, 
               path: '/'
-            res.cookie 'password', firstHash,
+            res.cookie 'hashedPassword', firstHash,
               path: '/'
 
             res.json

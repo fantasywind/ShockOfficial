@@ -1,14 +1,16 @@
 'use strict'
 
 angular.module('shockApp')
-  .controller 'PublishLoginCtrl', ($scope, $http) ->
+  .controller 'PublishLoginCtrl', ($scope, $http, $location, Publishlogin) ->
+
+    $scope.$watch ->
+      Publishlogin.status
+    , (now, previus)->
+      if now is Publishlogin.LOGINSTATUS.LOGINED
+        $location.path '/publish'
+
     $scope.login = ->
       if $scope.publishLogin.$valid
-        conn = $http
-          url: '/api/publish/login'
-          method: 'POST'
-          data: 
-            email: $scope.email
-            password: $scope.password
-        conn.success (result)->
-          console.dir result
+        Publishlogin.doLogin
+          success: ->
+            console.log 'Login Success'
