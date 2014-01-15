@@ -3,7 +3,8 @@
 // Module dependencies.
 var express = require('express'),  
     path = require('path'),
-    fs = require('fs');
+    fs = require('fs'),
+    passport = require('passport');
 
 var app = express();
 
@@ -15,6 +16,9 @@ var modelsPath = path.join(__dirname, 'lib/models');
 fs.readdirSync(modelsPath).forEach(function (file) {
   require(modelsPath + '/' + file);
 });
+
+// Import Passport Setting
+require('./lib/config/passport')(passport);
 
 // Populate empty DB with dummy data
 // require('./lib/db/dummydata');
@@ -28,11 +32,35 @@ var api = require('./lib/controllers/api'),
     index = require('./lib/controllers');
 
 // Server Routes
-app.post('/api/publish/login', api.publish.login)
-//app.get('/api/awesomeThings', api.awesomeThings);
 
 // Article
-app.get('/api/news', api.article.newsPage)
+app.get('/api/news', api.article.newsPage);
+
+// Sign Up / Sign In
+app.get('/api/signup/failed', api.member.signupFailed);
+app.get('/api/signup/success', api.member.signupSuccess);
+app.get('/api/login/failed', api.member.loginFailed);
+app.get('/api/login/success', api.member.loginSuccess);
+app.post('/api/logout', api.member.logout);
+
+// Passport
+app.post('/api/signup', passport.authenticate('local-signup', {
+  successRedirect: '/api/signup/success',
+  failureRedirect: '/api/signup/failed',
+  failureFlash: true
+}));
+
+app.post('/api/login', passport.authenticate('local-login', {
+  successRedirect: '/api/login/success',
+  failureRedirect: '/api/login/failed',
+  failureFlash: true
+}));
+
+app.post('/api/login/access_token', passport.authenticate('local-login-access-token', {
+  successRedirect: '/api/login/success',
+  failureRedirect: '/api/login/failed',
+  failureFlash: true
+}));
 
 // Angular Routes
 app.get('/partials/*', index.partials);

@@ -1,10 +1,26 @@
-mongoose = require('mongoose')
+mongoose = require 'mongoose'
+bcrypt = require 'bcrypt-nodejs'
 Schema = mongoose.Schema
-CONFIG = require "#{__dirname}/../../config.json"
 
 Member = new mongoose.Schema
-  email: String
-  password: String
+  local:
+    email: String
+    password: String
+  facebook:
+    id: String
+    token: String
+    email: String
+    name: String
+  twitter:
+    id: String
+    token: String
+    displayName: String
+    username: String
+  google:
+    id: String
+    token: String
+    email: String
+    name: String
   name: String
   title: String
   create_date:
@@ -14,11 +30,14 @@ Member = new mongoose.Schema
     type: String
     enum: ['guest', 'shock']
   privileges: [String]
-    
-# Validate Email
-Member.path('email').validate (email)->
-  emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
-  emailRegex.test(email.text)
-, 'Member Email Format Error.'
+
+# Hash generator
+Member.methods.generateHash = (password)->
+  bcrypt.hashSync password, bcrypt.genSaltSync(8), null
+
+# Check password
+
+Member.methods.validPassword = (password)->
+  bcrypt.compareSync password, @local.password
 
 mongoose.model 'Member', Member

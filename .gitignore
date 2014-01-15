@@ -9,6 +9,8 @@ partials/*.html
 lib/controllers/*.js
 lib/controllers/*/*.js
 lib/models/*.js
+lib/config/*.js
+!lib/config/express.js
 app/scripts/*.js
 app/styles/*.css
 app/styles/*/*.css

@@ -12,5 +12,7 @@ angular.module('shockApp')
     $scope.login = ->
       if $scope.publishLogin.$valid
         Publishlogin.doLogin
+          email: $scope.email
+          password: $scope.password
           success: ->
             console.log 'Login Success'

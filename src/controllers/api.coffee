@@ -3,7 +3,7 @@ path = require 'path'
 fs = require 'fs'
 Member = mongoose.model 'Member'
 
-folders = ['publish', 'article']
+folders = ['publish', 'article', 'member']
 
 for folder in folders
 	# 讀取 Controller

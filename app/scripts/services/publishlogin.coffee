@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('shockApp')
-  .service 'Publishlogin', ($http, $cookies) ->
+  .service 'Publishlogin', ($http, $location, $cookieStore, $cookies, errorAuthenticate) ->
     # AngularJS will instantiate a singleton by calling "new" on this function
 
     @LOGINSTATUS = 
@@ -10,8 +10,6 @@ angular.module('shockApp')
 
     @status = @LOGINSTATUS.UNLOGIN
     @name = null
-    @email = localStorage.email or $cookies.email
-    @hashedPassword = localStorage.hashedPassword or $cookies.hashedPassword
 
     # 暫存登入後執行函式
     checked = false
@@ -31,32 +29,44 @@ angular.module('shockApp')
       else
         loginedCallback.push fn for fn in arguments
 
+    @logout = ->
+      conn = $http
+        url: '/api/logout'
+        method: 'POST'
+
+      conn.success (result)=>
+        if result.status is 'success'
+          @status = @LOGINSTATUS.UNLOGIN
+          $location.path '/'
+
     @doLogin = (options)->
       options ?= {}
       {email, password, success, error} = options
 
       success ?= ->
       error ?= ->
-      email ?= @email
-      mode = 'plain'
-
-      if !password?
-        password = @hashedPassword
-        mode = 'hashed'
-
-      conn = $http
-        url: '/api/publish/login'
-        method: 'POST'
-        data: 
-          email: email
-          password: password
-          mode: mode
+      if email? and password?
+        conn = $http
+          url: '/api/login'
+          method: 'POST'
+          data: 
+            email: email
+            password: password
+      else if $cookies.access_token?
+        conn = $http
+          url: '/api/login/access_token'
+          method: 'POST'
+          data: 
+            email: 'email'
+            password: 'password'
+            access_token: $cookies.access_token
+      else
+        @errorMessage = errorAuthenticate.INVALID_INPUT
+        return @loginFailed()
 
       conn.success (result)=>
         if result.status is 'success'
-          @email = result.member.email
-          @hashedPassword = $cookies.hashedPassword
-          @name = result.member.name
+          @name = result.name or ''
           @loginSuccess()
           success()
         else
@@ -70,21 +80,23 @@ angular.module('shockApp')
     @errorMessage = ''
 
     @loginFailed = ->
-      localStorage.removeItem 'email'
-      localStorage.removeItem 'hashedPassword'
-      @email = undefined
-      @hashedPassword = undefined
+      $cookieStore.remove 'access_token'
       @status = @LOGINSTATUS.UNLOGIN
+      path = $location.path().split('/')
+      if path[1] is 'publish'
+        $location.path '/login'
 
     @loginSuccess = ->
       @errorMessage = ''
-      localStorage.email = @email
-      localStorage.hashedPassword = @hashedPassword
       @status = @LOGINSTATUS.LOGINED
       cleanLoginDo()
 
     # Auto Login
-    if @status is @LOGINSTATUS.UNLOGIN and @email? and @hashedPassword?
+    if $cookies.access_token?
       @doLogin()
+    else
+      path = $location.path().split('/')
+      if path[1] is 'publish'
+        $location.path '/login'
 
     return @

@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="/">
-    <title></title>
+    <title>Shock! 三峽客地方媒體</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -26,23 +26,24 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <header role='header' id='page-header' ng-controller='HeaderCtrl'>
+    <header role='header' id='page-header' ng-controller='HeaderCtrl' ng-class='submenu ? "" : "close-submenu"'>
       <div class='brand'>Shock! 三峽客</div>
       <nav>
-        <ul>
+        <ul class='menu'>
           <li ng-repeat='nav in navList' ng-class='nav.ns === nowPage ? "active" : ""'>
             <a ng-bind='nav.name' ng-href='{{nav.url}}'></a>
           </li>
         </ul>
       </nav>
       <nav class='right-field'>
-        <button type="button">
+        <button type="button" ng-click='submenu = !submenu'>
           <i class='glyphicon glyphicon-cog'></i>
         </button>
-        <ul class="menu" role="menu">
-          <li><a href="#"></a></li>
-        </ul>
       </nav>
+      <ul class="submenu" role="menu">
+        <li ng-show='logined === "unlogin"' ng-click='login()'><a href="/login">登入</a></li>
+        <li ng-show='logined === "logined"' ng-click='logout()'><a href='#'>登出</a></li>
+      </ul>
     </header>
     <div class="container" ng-view=""></div>
 
@@ -86,6 +87,7 @@
         <script src="scripts/directives/publishheader.js"></script>
         <script src="scripts/services/navigation.js"></script>
         <script src="scripts/services/publishlogin.js"></script>
+        <script src="scripts/services/errorauthenticate.js"></script>
         <!-- endbuild -->
 </body>
 </html>

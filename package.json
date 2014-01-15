@@ -37,7 +37,11 @@
     "time-grunt": "~0.2.1",
     "grunt-express-server": "~0.4.5",
     "grunt-open": "~0.2.0",
-    "connect-livereload": "~0.3.0"
+    "connect-livereload": "~0.3.0",
+    "bcrypt-nodejs" : "latest",
+    "connect-flash" : "~0.1.1",
+    "passport": "~0.1.18",
+    "passport-local": "~0.1.6"
   },
   "engines": {
     "node": ">=0.8.0"

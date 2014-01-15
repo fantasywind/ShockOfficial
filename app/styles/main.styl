@@ -12,38 +12,71 @@ LightBackgroundHoverColor = #FAFAFA
   nav
     display inline-block
     margin-left 6em
-  ul
+  .menu
     display inline-block
     padding 0
     margin 0
-  li
-    display inline-block
-    list-style none
-    margin 0
-    padding 4px 6pt
-    cursor pointer
-    a
-      color #FFF
-      text-decoration none
-    &:hover
-      background-color lighten(ShockMain, 15%)
-    &.active
-      background-color Highlight
+    li
+      display inline-block
+      list-style none
+      margin 0
+      padding 4px 6pt
+      cursor pointer
       a
-        color HighlightThin
+        color #FFF
+        text-decoration none
+      &:hover
+        background-color lighten(ShockMain, 15%)
+      &.active
+        background-color Highlight
+        a
+          color HighlightThin
+  .submenu
+    position absolute
+    right 3px
+    background #FCFCFC
+    border 1px solid #CCC
+    box-shadow -1px 1px 4px #ccc
+    top 28px
+    width 100px
+    padding 4px 8px
+    margin 0
+    li
+      list-style none
+      text-align center
+      font-size 10pt
+      margin 3px 0
+      padding 4px 0
+      cursor pointer
+      a
+        text-decoration none
+        color #777
+      &:hover
+        background-color rgba(Highlight, 40%)
+        a
+          color #222
   .right-field
     position absolute
-    right 2px
-    top 3px
+    right 3px
+    top 0
     margin 0
+    padding 3px 0
+    background-color #FCFCFC
     button
       background-color transparent
       border 0
       outline none
-      color #FAFAFA
+      color ShockMain
     .menu
       display none
       position relative
+  &.close-submenu
+    .right-field
+      background-color transparent
+      button
+        color #FCFCFC
+    .submenu
+      display none
 /* 新聞 - 搜尋區塊 */
 #news-search-field
   margin 36px 0 18px 0

@@ -206,6 +206,18 @@ module.exports = function (grunt) {
           src: '{,*/}*.coffee',
           dest: './lib/controllers/publish',
           ext: '.js'
+        }, {
+          expand: true,
+          cwd: './src/controllers/member',
+          src: '{,*/}*.coffee',
+          dest: './lib/controllers/member',
+          ext: '.js'
+        }, {
+          expand: true,
+          cwd: './src/controllers/article',
+          src: '{,*/}*.coffee',
+          dest: './lib/controllers/article',
+          ext: '.js'
         }]
       },
       models: {
@@ -217,6 +229,18 @@ module.exports = function (grunt) {
           cwd: './src/models',
           src: '{,*/}*.coffee',
           dest: './lib/models',
+          ext: '.js'
+        }]
+      },
+      config: {
+        options: {
+          sourceMap: false
+        },
+        files: [{
+          expand: true,
+          cwd: './src/config',
+          src: '{,*/}*.coffee',
+          dest: './lib/config',
           ext: '.js'
         }]
       },
@@ -479,6 +503,7 @@ module.exports = function (grunt) {
         'stylus:dist',
         'coffee:controllers',
         'coffee:models',
+        'coffee:config',
         'coffee:dist',
         'compass:server'
       ],
