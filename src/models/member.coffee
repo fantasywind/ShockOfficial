@@ -29,6 +29,7 @@ Member = new mongoose.Schema
   type:
     type: String
     enum: ['guest', 'shock']
+    default: 'guest'
   privileges: [String]
 
 # Hash generator

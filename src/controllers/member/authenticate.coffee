@@ -22,6 +22,7 @@ exports.loginSuccess = (req, res)->
     status: 'success'
     msg: 'Logined.'
     name: req.user.name
+    accountType: req.user.type
     privileges: req.user.privileges
 
 exports.logout = (req, res)->

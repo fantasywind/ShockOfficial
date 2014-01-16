@@ -4,9 +4,10 @@ angular.module('shockApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'pascalprecht.translate'
 ])
-  .config ($routeProvider, $locationProvider, $httpProvider) ->
+  .config ($routeProvider, $locationProvider, $httpProvider, $translateProvider) ->
     # Set Http Provider Like jQuery
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
     $httpProvider.defaults.transformRequest = [ (data)->
@@ -34,6 +35,14 @@ angular.module('shockApp', [
       return returnVal
     ]
 
+    # Set i18n
+    $translateProvider.useStaticFilesLoader
+      prefix: '/lang/locale-'
+      suffix: '.json'
+
+    $translateProvider.preferredLanguage 'zh-TW'
+    $translateProvider.useLocalStorage()
+
     # Set Route
     $routeProvider
       .when '/news',
@@ -42,6 +51,9 @@ angular.module('shockApp', [
       .when '/publish',
         templateUrl: 'partials/publishdashboard.html'
         controller: 'PublishDashboardCtrl'
+      .when '/publish/article/new',
+        templateUrl: 'partials/publisharticlenew.html'
+        controller: 'PublishArticleNew'
       .when '/login',
         templateUrl: 'partials/login.html'
         controller: 'PublishLoginCtrl'

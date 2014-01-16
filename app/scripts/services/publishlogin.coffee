@@ -9,6 +9,7 @@ angular.module('shockApp')
       UNLOGIN: 'unlogin'
 
     @status = @LOGINSTATUS.UNLOGIN
+    @shockMember = false
     @name = null
 
     # 暫存登入後執行函式
@@ -67,6 +68,8 @@ angular.module('shockApp')
       conn.success (result)=>
         if result.status is 'success'
           @name = result.name or ''
+          result.accountType ?= 'guest'
+          @shockMember = if result.accountType is 'shock' then true else false
           @loginSuccess()
           success()
         else
@@ -80,6 +83,7 @@ angular.module('shockApp')
     @errorMessage = ''
 
     @loginFailed = ->
+      @shockMember = false
       $cookieStore.remove 'access_token'
       @status = @LOGINSTATUS.UNLOGIN
       path = $location.path().split('/')

@@ -1,10 +1,17 @@
 'use strict'
 
 angular.module('shockApp')
-  .directive('publishHeader', ['$location', ($location) ->
+  .directive('publishHeader', ['$location', 'Publishlogin', 'Navigation', ($location, Publishlogin, Navigation) ->
     templateUrl: '/partials/publishHeader.html'
     restrict: 'E'
     link: ($scope, elem, attrs)->
+
+      # 檢查權限
+      Publishlogin.loginedDo ->
+        if !Publishlogin.shockMember
+          return $location.path '/'
+        else
+          Navigation.page = ''
 
       $scope.moveTo = (target)->
         $location.path target

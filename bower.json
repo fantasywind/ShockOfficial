@@ -11,6 +11,9 @@
     "angular-cookies": "1.2.6",
     "angular-sanitize": "1.2.6",
     "angular-route": "1.2.6",
+    "angular-translate": "1.1.1",
+    "angular-translate-loader-static-files": "0.1.6",
+    "angular-translate-storage-local": "0.1.6",
     "textAngular": "1.1.2"
   },
   "devDependencies": {
