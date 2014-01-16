@@ -42,6 +42,7 @@
       </nav>
       <ul class="submenu" role="menu">
         <li ng-show='logined === "unlogin"' ng-click='login()'><a href="/login" translate='LOGIN'></a></li>
+        <li ng-show='logined === "logined" && shockMember', ng-click='publishSystem()'><a href='/publish' translate='PUBLISH_SYSTEM'></a></li>
         <li ng-show='logined === "logined"' ng-click='logout()'><a href='#' translate='LOGOUT'></a></li>
       </ul>
     </header>
@@ -90,9 +91,11 @@
         <script src="scripts/directives/newssectionmd.js"></script>
         <script src="scripts/directives/newssectionmdsub.js"></script>
         <script src="scripts/directives/publishheader.js"></script>
+        <script src="scripts/directives/authorselector.js"></script>
         <script src="scripts/services/navigation.js"></script>
         <script src="scripts/services/publishlogin.js"></script>
         <script src="scripts/services/errorauthenticate.js"></script>
+        <script src="scripts/services/newarticle.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -8,7 +8,7 @@ div.container
           div.form-group
             label.col-sm-3.control-label(for='publishLoginUsername', translate='EMAIL')
             div.col-sm-9
-              input.form-control#publishLoginUsername(tabindex='1', ng-model='email', required, type='email', placeholder='{{PLEASE_TYPING_YOUR_EMAIL}}')
+              input.form-control#publishLoginUsername(autofocus, tabindex='1', ng-model='email', required, type='email', placeholder='{{PLEASE_TYPING_YOUR_EMAIL}}')
               p.helper(ng-show='publishLogin.$error.email && !publishLogin.$pristine', translate='PLEASE_TYPE_VALID_EMAIL')
           div.form-group
             label.col-sm-3.control-label(for='publishLoginPassword', translate='PASSWORD')

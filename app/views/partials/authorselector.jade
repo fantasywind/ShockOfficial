@@ -1,0 +1,4 @@
+div.author(ng-repeat='author in authors', ng-class='author.type === AUTHOR_TYPE.AUTHENTICATE ? "authenticated" : ((author.type === AUTHOR_TYPE.GUEST) ? "guest" : "unknown")')
+  span(ng-bind='author.name')
+  span.remove-btn.glyphicon.glyphicon-remove
+div.create-button

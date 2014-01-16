@@ -13,6 +13,11 @@ angular.module('shockApp')
       $scope.submenu = false
       Publishlogin.logout()
 
+    $scope.publishSystem = ->
+      $location.path '/publish'
+
+    $scope.shockMember = false
+
     $scope.$watch ->
       Navigation.page
     , (newPage)->
@@ -23,3 +28,8 @@ angular.module('shockApp')
       Publishlogin.status
     , (newStatus)->
       $scope.logined = newStatus
+
+    $scope.$watch ->
+      Publishlogin.shockMember
+    , (newStatus)->
+      $scope.shockMember = newStatus

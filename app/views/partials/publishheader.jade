@@ -1,6 +1,6 @@
 nav#publish-navigation
-  a(ng-repeat='nav in navs', ng-click='moveTo(nav.src)', ng-class='nav.name === page ? "active" : ""')
+  a(ng-repeat='nav in navs', ng-click='nav.children.length ? "" : moveTo(nav.src)', ng-class='nav.name === page ? "active" : ""')
     span(translate='{{nav.name}}')
     ul.sub(ng-show='nav.children.length')
       li(ng-repeat='sub in nav.children', ng-click='moveTo(sub.src)')
-        span(ng-href='sub.src', translate='{{sub.name}}')
+        span(translate='{{sub.name}}')
