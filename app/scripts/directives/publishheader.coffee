@@ -18,16 +18,16 @@ angular.module('shockApp')
 
       $scope.page = attrs.page
       $scope.navs = [{
-        name: 'Dashboard'
+        name: 'PUBLISH_HEADER_DASHBOARD'
         src: '/publish'
       },{
-        name: '文章'
+        name: 'PUBLISH_HEADER_ARTICLE'
         src: '/publish/article'
         children: [{
-          name: '新增文章'
+          name: 'PUBLISH_HEADER_ARTICLE_NEW'
           src: '/publish/article/new'
         },{
-          name: '我的文章'
+          name: 'PUBLISH_HEADER_ARTICLE_ME'
           src: '/publish/article/me'
         }]
       }]

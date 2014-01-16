@@ -3,17 +3,17 @@ div.container
     div.col-md-4.col-md-offset-4
       div.main#loginPublish(role='login')
         header
-          h1 登入
+          h1(translate='LOGIN')
         form.form-horizontal(role='form', name='publishLogin', ng-submit='login()')
           div.form-group
-            label.col-sm-3.control-label(for='publishLoginUsername') 信箱
+            label.col-sm-3.control-label(for='publishLoginUsername', translate='EMAIL')
             div.col-sm-9
-              input.form-control#publishLoginUsername(tabindex='1', ng-model='email', required, type='email', placeholder='請輸入 Email')
-              p.helper(ng-show='publishLogin.$error.email && !publishLogin.$pristine') 請輸入正確的信箱格式
+              input.form-control#publishLoginUsername(tabindex='1', ng-model='email', required, type='email', placeholder='{{PLEASE_TYPING_YOUR_EMAIL}}')
+              p.helper(ng-show='publishLogin.$error.email && !publishLogin.$pristine', translate='PLEASE_TYPE_VALID_EMAIL')
           div.form-group
-            label.col-sm-3.control-label(for='publishLoginPassword') 密碼
+            label.col-sm-3.control-label(for='publishLoginPassword', translate='PASSWORD')
             div.col-sm-9
-              input.form-control#publishLoginPassword(tabindex='2', ng-model='password', required, type='password', placeholder='請輸入密碼')
+              input.form-control#publishLoginPassword(tabindex='2', ng-model='password', required, type='password', placeholder='{{PLEASE_TYPING_YOUR_PASSWORD}}')
           div.form-group(ng-show='errorMsg')
             div.col-sm-9.col-sm-offset-3
               p.login-failed(ng-bind='errorMsg')

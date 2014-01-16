@@ -1,16 +1,17 @@
 'use strict'
 
 angular.module('shockApp')
-  .service 'Navigation', () ->
+  .service 'Navigation', ($translate) ->
     # AngularJS will instantiate a singleton by calling "new" on this function
+
     @pageList = [
       {
-        name: '新聞'
+        name: 'HEADER_NEWS'
         ns: 'news'
         url: '/news'
       }
       {
-        name: '在地景點'
+        name: 'HEADER_LOCAL_VIEWS'
         ns: 'views'
         url: '/views'
       }

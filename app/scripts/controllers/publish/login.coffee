@@ -9,6 +9,8 @@ angular.module('shockApp')
       if now is Publishlogin.LOGINSTATUS.LOGINED
         $location.path '/publish'
 
+    $scope.PLEASE_TYPING_YOUR_EMAIL = $translate 'PLEASE_TYPING_YOUR_EMAIL'
+    $scope.PLEASE_TYPING_YOUR_PASSWORD = $translate 'PLEASE_TYPING_YOUR_PASSWORD'
     $scope.errorMsg = null
 
     $scope.login = ->

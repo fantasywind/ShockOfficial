@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="/">
-    <title>Shock! 三峽客地方媒體</title>
+    <title translate='SHOCK_PAPER'>Shock! 三峽客地方媒體</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -31,7 +31,7 @@
       <nav>
         <ul class='menu'>
           <li ng-repeat='nav in navList' ng-class='nav.ns === nowPage ? "active" : ""'>
-            <a ng-bind='nav.name' ng-href='{{nav.url}}'></a>
+            <a ng-bind='nav.name' translate='{{nav.name}}' ng-href='{{nav.url}}'></a>
           </li>
         </ul>
       </nav>
@@ -41,8 +41,8 @@
         </button>
       </nav>
       <ul class="submenu" role="menu">
-        <li ng-show='logined === "unlogin"' ng-click='login()'><a href="/login">登入</a></li>
-        <li ng-show='logined === "logined"' ng-click='logout()'><a href='#'>登出</a></li>
+        <li ng-show='logined === "unlogin"' ng-click='login()'><a href="/login" translate='LOGIN'></a></li>
+        <li ng-show='logined === "logined"' ng-click='logout()'><a href='#' translate='LOGOUT'></a></li>
       </ul>
     </header>
     <div class="container" ng-view=""></div>

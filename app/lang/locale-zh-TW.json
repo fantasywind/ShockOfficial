@@ -1,8 +1,22 @@
 {
+  "SHOCK_PAPER": "Shock! 三峽客",
   "LOGIN": "登入",
+  "LOGOUT": "登出",
+  "EMAIL": "信箱",
+  "PASSWORD": "密碼",
+  "LOGIN_BUTTON": "登入系統",
   "LOGIN_EMPTY_FIELD": "登入失敗，欄位不得為空值",
   "LOGIN_PASSWORD_FAILED": "密碼錯誤，請檢查後再送出",
   "LOGIN_NOT_FOUND": "找不到帳號，請確認後再嘗試",
   "LOGIN_SUCCESS": "登入成功！",
-  "SYSTEM_FAILED": "系統錯誤，請聯絡系統管理員"
+  "PLEASE_TYPE_VALID_EMAIL": "請輸入正確的信箱格式",
+  "PLEASE_TYPING_YOUR_EMAIL": "請輸入您的信箱",
+  "PLEASE_TYPING_YOUR_PASSWORD": "請輸入您的密碼",
+  "SYSTEM_FAILED": "系統錯誤，請聯絡系統管理員",
+  "HEADER_NEWS": "新聞",
+  "HEADER_LOCAL_VIEWS": "在地景點",
+  "PUBLISH_HEADER_DASHBOARD": "總覽",
+  "PUBLISH_HEADER_ARTICLE": "文章",
+  "PUBLISH_HEADER_ARTICLE_NEW": "新增文章",
+  "PUBLISH_HEADER_ARTICLE_ME": "我的文章"
 }
