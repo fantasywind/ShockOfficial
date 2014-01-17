@@ -36,6 +36,9 @@ var api = require('./lib/controllers/api'),
 // Article
 app.get('/api/news', api.article.newsPage);
 
+// Member
+app.get('/api/member/type/:memberName', api.member.typeCheck);
+
 // Sign Up / Sign In
 app.get('/api/signup/failed', api.member.signupFailed);
 app.get('/api/signup/success', api.member.signupSuccess);

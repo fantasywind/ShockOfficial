@@ -5,9 +5,10 @@ angular.module('shockApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'pascalprecht.translate'
+  'pascalprecht.translate',
+  'textAngular'
 ])
-  .config ($routeProvider, $locationProvider, $httpProvider, $translateProvider) ->
+  .config(($routeProvider, $locationProvider, $httpProvider, $translateProvider) ->
     # Set Http Provider Like jQuery
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
     $httpProvider.defaults.transformRequest = [ (data)->
@@ -60,3 +61,33 @@ angular.module('shockApp', [
       .otherwise
         redirectTo: '/news'
     $locationProvider.html5Mode(true)
+  )
+  .run ($rootScope)->
+    # Text Editor
+    $rootScope.textAngularTools =
+      paragraph:
+        display: "<button ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-align-justify'></i> 段落</button>"
+        action: ->
+          @.$parent.wrapSelection 'formatBlock', '<p>'
+        activeState: ->
+          false
+      subtitle:
+        display: "<button ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-font'></i> 小標</button>"
+        action: ->
+          @.$parent.wrapSelection 'formatBlock', '<h2>'
+        activeState: ->
+          false
+      picture:
+        display: "<button ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-picture-o'></i> 照片</button>"
+        action: ->
+          @.$parent.wrapSelection 'formatBlock', '<figure>'
+        activeState: ->
+          false
+      fit:
+        display: "<button ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-magic'></i> 自動修正</button>"
+        action: ->
+          editor = angular.element 'text-angular'
+          editor.find('.editor-content p').removeAttr 'style'
+          @.$parent.wrapSelection 'formatBlock', '<p>'
+        activeState: ->
+          false

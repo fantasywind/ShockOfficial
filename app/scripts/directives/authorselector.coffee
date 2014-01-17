@@ -1,10 +1,21 @@
 'use strict'
 
 angular.module('shockApp')
-  .directive('authorSelector', ->
+  .directive 'authorSelector', ->
     templateUrl: '/partials/authorselector.html'
     restrict: 'E'
-    controller: ($scope, $timeout, newArticle)->
+    require: 'ngModel'
+    controller: ($rootScope, $scope, $timeout, newArticle)->
+
+      spliter = (text)->
+        return if !angular.isString text
+        splited = text.split ','
+        if splited.length > 1
+          for author in splited
+            newArticle.addAuthor author if author isnt ''
+          $scope.inputText = ''
+        else
+          []
 
       $scope.authors = newArticle.getAuthors()
 
@@ -13,17 +24,10 @@ angular.module('shockApp')
       $scope.removeThis = (author)->
         newArticle.removeAuthor author
 
+      $scope.$watch 'inputText', (newText)->
+        spliter newText
+      , true
+
       # Initial new article
       newArticle.initialAuthor()
       newArticle.addSelfToAuthor()
-      newArticle.addSelfToAuthor()
-      newArticle.addSelfToAuthor()
-      newArticle.addSelfToAuthor()
-      newArticle.addSelfToAuthor()
-      newArticle.addSelfToAuthor()
-
-      $timeout ->
-        newArticle.addSelfToAuthor()
-      , 1500
-
-  )

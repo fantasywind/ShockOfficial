@@ -1,5 +1,5 @@
-input.author-input.form-control(type='text', placeholder='請輸入協作者清單，並以半型逗點(,)分隔。')
+input.author-input.form-control(type='text', placeholder='請輸入協作者清單，並以半型逗點(,)分隔。', ng-model='inputText')
 div.author-container
-  div.author(ng-repeat='author in authors', ng-class='author.type === AUTHOR_TYPE.AUTHENTICATE ? "authenticated" : ((author.type === AUTHOR_TYPE.GUEST) ? "guest" : "unknown")')
+  div.author(ng-repeat='author in authors', ng-class='author.type === AUTHOR_TYPE.AUTHENTICATE ? "authenticated" : ((author.type === AUTHOR_TYPE.GUEST) ? "guest" : (author.type === AUTHOR_TYPE.UNKNOWN) ? "unknown" : "fetching")')
     span(ng-bind='author.name')
-    span.remove-btn.fa(ng-class='author.type === AUTHOR_TYPE.UNKNOWN ? "fa-spin fa-spinner" : "fa-times"', ng-click='removeThis(author)')
+    span.remove-btn.fa(ng-class='author.type === AUTHOR_TYPE.FETCHING ? "fa-spin fa-spinner" : "fa-times"', ng-click='removeThis(author)')

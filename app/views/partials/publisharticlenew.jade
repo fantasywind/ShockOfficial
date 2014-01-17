@@ -21,3 +21,7 @@ div.container
             div.checkbox(name='interview', ng-class='isInterview ? "active" : ""', ng-click='isInterview = !isInterview')
               div.checker
                 span.glyphicon.glyphicon-ok
+        div.form-group
+          label.col-sm-2.control-label(for='content') 文章
+          div.col-sm-10
+            text-angular.main-content(ng-model='mainContent', text-angular-name='mainEditor', ta-text-editor-class="editor-content", ta-toolbar="[['paragraph', 'subtitle', 'picture'], ['fit']]")
