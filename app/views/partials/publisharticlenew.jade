@@ -5,6 +5,8 @@ div.container
   div.row
     div.col-lg-12
       h1 新增文章
+  div.row#add-article-form-container
+    div.col-lg-12
       form#add-article.form-horizontal(role='form')
         div.form-group
           label.col-sm-2.control-label(for='title') 主標題
@@ -13,7 +15,7 @@ div.container
         div.form-group
           label.col-sm-2.control-label(for='author') 撰稿
           div.col-sm-8
-            author-selector#new-article-author-selector
+            author-selector#new-article-author-selector.author-selector
           label.col-sm-1.control-label 採訪
           div.col-sm-1.checkbox-container
             div.checkbox(name='interview', ng-class='isInterview ? "active" : ""', ng-click='isInterview = !isInterview')

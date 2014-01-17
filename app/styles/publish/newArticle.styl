@@ -1,10 +1,13 @@
+AUTHENTICATE_COLOR_HOVER = lighten(#000, 35%)
 AUTHENTICATE_COLOR = #000
 AUTHENTICATE_BG = rgba(#1abc9c, 0.6)
 AUTHENTICATE_BORDER_COLOR = darken(#1abc9c, 12%)
+UNKNOWN_COLOR_HOVER = lighten(#222, 35%)
 UNKNOWN_COLOR = #222
 UNKNOWN_BG = #EFEFEF
 UNKNOWN_BORDER_COLOR = #CCC
 GUEST_COLOR = #000
+GUEST_COLOR_HOVER = lighten(#000, 35%)
 GUEST_BG = rgba(#e67e22, 0.46)
 GUEST_BORDER_COLOR = darken(#e67e22, 8%)
 #add-article
@@ -31,8 +34,9 @@ GUEST_BORDER_COLOR = darken(#e67e22, 8%)
     font-size 10pt
     margin-left 6px
     color UNKNOWN_COLOR
-    &:before
-      content "\e085"
+    cursor pointer
+    &:hover
+      color UNKNOWN_COLOR_HOVER
   .author
     display inline-block
     border 1px solid UNKNOWN_BORDER_COLOR
@@ -47,13 +51,21 @@ GUEST_BORDER_COLOR = darken(#e67e22, 8%)
       color AUTHENTICATE_COLOR
       .remove-btn
         color AUTHENTICATE_COLOR
-        &:before
-          content "\e014"
+        &:hover
+          color AUTHENTICATE_COLOR_HOVER
     &.guest
       border-colot GUEST_BORDER_COLOR
       background-color GUEST_BG
       color GUEST_COLOR
       .remove-btn
         color GUEST_COLOR
-        &:before
-          content "\e014"
+        &:hover
+          color GUEST_COLOR_HOVER
+
+.author-container
+  margin-top 6px
+  input
+    width 98%
+    padding 0 1%
+    padding-top 3px
+    letter-spacing 0.17em

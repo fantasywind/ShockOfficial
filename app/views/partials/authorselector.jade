@@ -1,4 +1,5 @@
-div.author(ng-repeat='author in authors', ng-class='author.type === AUTHOR_TYPE.AUTHENTICATE ? "authenticated" : ((author.type === AUTHOR_TYPE.GUEST) ? "guest" : "unknown")')
-  span(ng-bind='author.name')
-  span.remove-btn.glyphicon.glyphicon-remove
-div.create-button
+input.author-input.form-control(type='text', placeholder='請輸入協作者清單，並以半型逗點(,)分隔。')
+div.author-container
+  div.author(ng-repeat='author in authors', ng-class='author.type === AUTHOR_TYPE.AUTHENTICATE ? "authenticated" : ((author.type === AUTHOR_TYPE.GUEST) ? "guest" : "unknown")')
+    span(ng-bind='author.name')
+    span.remove-btn.fa(ng-class='author.type === AUTHOR_TYPE.UNKNOWN ? "fa-spin fa-spinner" : "fa-times"', ng-click='removeThis(author)')

@@ -5,12 +5,19 @@ angular.module('shockApp')
     templateUrl: '/partials/authorselector.html'
     restrict: 'E'
     controller: ($scope, $timeout, newArticle)->
+
       $scope.authors = newArticle.getAuthors()
 
       $scope.AUTHOR_TYPE = newArticle.getAuthorTypes()
-      
+
+      $scope.removeThis = (author)->
+        newArticle.removeAuthor author
+
       # Initial new article
       newArticle.initialAuthor()
+      newArticle.addSelfToAuthor()
+      newArticle.addSelfToAuthor()
+      newArticle.addSelfToAuthor()
       newArticle.addSelfToAuthor()
       newArticle.addSelfToAuthor()
       newArticle.addSelfToAuthor()

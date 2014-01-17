@@ -32,5 +32,12 @@ angular.module('shockApp')
 
       getAuthors: ->
         _authors
+
+      removeAuthor: (authorBeRemoved)->
+        for author, idx in _authors
+          if authorBeRemoved is author
+            _authors.splice idx, 1
+            return true
+        return false
     }
   ]
