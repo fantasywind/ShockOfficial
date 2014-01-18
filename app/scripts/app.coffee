@@ -62,7 +62,13 @@ angular.module('shockApp', [
         redirectTo: '/news'
     $locationProvider.html5Mode(true)
   )
-  .run ($rootScope)->
+  .run ($rootScope, $document, newArticle)->
+
+    queryFormatBlockState = (command)->
+      command = command.toLowerCase()
+      val = $document[0].queryCommandValue('formatBlock').toLowerCase()
+      val is command or val is command
+
     # Text Editor
     $rootScope.textAngularTools =
       paragraph:
@@ -70,19 +76,21 @@ angular.module('shockApp', [
         action: ->
           @.$parent.wrapSelection 'formatBlock', '<p>'
         activeState: ->
-          false
+          queryFormatBlockState 'p'
       subtitle:
         display: "<button ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-font'></i> 小標</button>"
         action: ->
           @.$parent.wrapSelection 'formatBlock', '<h2>'
         activeState: ->
-          false
+          queryFormatBlockState 'h2'
       picture:
         display: "<button ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-picture-o'></i> 照片</button>"
         action: ->
           @.$parent.wrapSelection 'formatBlock', '<figure>'
+          newArticle.showModal()
+          true
         activeState: ->
-          false
+          queryFormatBlockState 'figure'
       fit:
         display: "<button ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-magic'></i> 自動修正</button>"
         action: ->

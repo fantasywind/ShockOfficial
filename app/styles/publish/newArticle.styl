@@ -23,6 +23,9 @@ SUBTITLE_HELPER = #f39c12
 FIGURE_BG = rgba(#2ecc71, 12%)
 FIGURE_BORDER = rgba(#2ecc71, 60%)
 FIGURE_HELPER = #27ae60
+PHOTO_SELECTOR_HOVER_BORDER = #3498db
+PHOTO_SELECTOR_HOVER_BG = rgba(#3498db, 0.05)
+PHOTO_SELECTOR_SELECTED_BG = rgba(#3498db, 0.12)
 #add-article
   .checkbox-container
     padding 4px
@@ -92,6 +95,43 @@ FIGURE_HELPER = #27ae60
           font-size 11pt
           background-color FIGURE_BG
           color FIGURE_HELPER
+.photo-selector
+  background-color #FAFAFA
+  padding 10px 6px 3px 6px
+  border 1px solid #CCC
+  margin 0 0 4px 0
+  position relative
+  li
+    list-style none
+    display inline-block
+    margin 0 4px 4px 0
+    border 1px solid transparent
+    padding 4px
+    cursor pointer
+    &:hover
+      border-color PHOTO_SELECTOR_HOVER_BORDER
+      background-color PHOTO_SELECTOR_HOVER_BG
+    &.selected
+      border-color PHOTO_SELECTOR_HOVER_BORDER
+      background-color PHOTO_SELECTOR_SELECTED_BG
+  img
+    width 120px
+    height 80px
+  p
+    margin 0
+  .btn-sm
+    position absolute
+    outline none
+  .add
+    top 4px
+    left -90px
+    background-color #FFF
+    border-color #CCC
+    &:hover
+      background-color #F9F9F9
+  .join
+    left -67px
+    bottom 0
 #new-article-author-selector
   .remove-btn
     font-size 10pt

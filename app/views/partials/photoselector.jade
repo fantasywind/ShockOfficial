@@ -1,0 +1,20 @@
+ul.photo-selector
+  li(ng-repeat='photo in photos', ng-class='photo.selected ? "selected" : ""', ng-click='photo.selected = !photo.selected')
+    img(ng-src='{{photo.source}}')
+    p(ng-bind='photo.description')
+  button.btn.btn-sm.add(type='button', ng-click='showModal()')
+    span.fa.fa-plus
+    span  上傳圖片
+  button.btn.btn-sm.btn-primary.join(type='button', ng-show="(photos | filter: {selected: true}).length")
+    span.fa.fa-arrow-circle-down
+    span  加入
+div.modal.fade
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+        h4.modal-title 上傳圖片
+      div.modal-body
+      div.modal-footer
+        button.btn.btn-default(type='button', data-dismiss='modal') 關閉
+        button.btn.btn-primary(type='button') 上傳
