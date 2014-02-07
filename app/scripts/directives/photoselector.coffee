@@ -4,8 +4,11 @@ angular.module('shockApp')
   .directive('photoSelector', () ->
     templateUrl: '/partials/photoselector'
     restrict: 'E'
-    controller: (newArticle, $scope, $element, Uploadphoto)->
+    controller: ($rootScope, $scope, $element, Uploadphoto)->
       $scope.photos = []
+
+      injector = if angular.isFunction $rootScope.injectPhoto then $rootScope.injectPhoto else null
+      console.error 'Undefined injector.' if !injector?
 
       modalDOM = $element.find '.modal'
 
@@ -19,7 +22,7 @@ angular.module('shockApp')
 
       # Tag Parsing
       parseTag = (tag)->
-        return tag if angular.iaArray tag
+        return tag if angular.isArray tag
         return [] if !angular.isString tag
 
       $scope.showModal = ->
