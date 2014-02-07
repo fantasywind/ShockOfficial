@@ -1,0 +1,106 @@
+PHOTO_SELECTOR_HOVER_BORDER = #3498db
+PHOTO_SELECTOR_HOVER_BG = rgba(#3498db, 0.05)
+PHOTO_SELECTOR_ERROR_BORDER = #e74c3c
+PHOTO_SELECTOR_ERROR_BG = rgba(#e74c3c, 0.12)
+PHOTO_SELECTOR_SELECTED_BG = rgba(#3498db, 0.12)
+
+photo-selector
+  .modal-body
+    padding 0 32px
+  .file-selector-cover
+    width 100%
+    position relative
+    padding 8px 0
+    margin 28px 0
+    font-size 18pt
+    color #222
+    border 1px solid #CCC
+    background-color #F7F7F7
+    border-radius 3px
+    height 52px
+    cursor pointer
+    &:hover
+      background-color #F0F0F0
+      color #111
+  .file-selector
+    cursor pointer
+    position relative
+    z-index 50
+    top -80px
+    left 0
+    float left
+    height 52px
+    opacity 0
+    width 100%
+  ul
+    background-color #FAFAFA
+    padding 10px 6px 3px 6px
+    border 1px solid #CCC
+    margin 0 0 4px 0
+    position relative
+    li
+      list-style none
+      display inline-block
+      margin 0 4px 4px 0
+      border 1px solid transparent
+      padding 4px
+      cursor pointer
+      position relative
+      transition opacity 0.24s linear
+      &:hover
+        border-color PHOTO_SELECTOR_HOVER_BORDER
+        background-color PHOTO_SELECTOR_HOVER_BG
+      &.selected
+        border-color PHOTO_SELECTOR_HOVER_BORDER
+        background-color PHOTO_SELECTOR_SELECTED_BG
+      &.error
+        border-color PHOTO_SELECTOR_ERROR_BORDER
+        background-color PHOTO_SELECTOR_ERROR_BG
+        opacity 1
+      &.wait
+        opacity 0.2
+        i
+          color #222
+          &:before
+            content '\f017'
+      &.uploading
+        opacity 0.7
+        i
+          -webkit-animation spin 2s infinite linear
+          -moz-animation spin 2s infinite linear
+          -o-animation spin 2s infinite linear
+          animation spin 2s infinite linear
+          color #4C4C4C
+          &:before
+            content '\f110'
+      &.success
+        opacity 1
+      i
+        font-size 24pt
+        position absolute
+        top 30px
+        left 49px
+    img
+      width 120px
+      height 80px
+    p
+      margin 0
+      max-width 120px
+      padding-right 12px
+      overflow hidden
+      height 20px
+      padding-top 3px
+      color #555
+    .btn-sm
+      position absolute
+      outline none
+    .add
+      top 4px
+      left -90px
+      background-color #FFF
+      border-color #CCC
+      &:hover
+        background-color #F9F9F9
+    .join
+      left -67px
+      bottom 0

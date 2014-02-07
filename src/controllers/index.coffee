@@ -5,7 +5,8 @@ exports.partials = (req, res)->
   requestedView = path.join('./', stripped)
   res.render requestedView, (err, html)->
     if err
-      res.render('404')
+      console.error err
+      res.send(404)
     else
       res.send(html)
 

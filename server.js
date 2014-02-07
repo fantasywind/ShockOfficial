@@ -33,6 +33,9 @@ var api = require('./lib/controllers/api'),
 
 // Server Routes
 
+// Photo
+app.post('/api/photo', api.photo.upload)
+
 // Article
 app.get('/api/news', api.article.newsPage);
 

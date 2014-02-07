@@ -19,3 +19,4 @@ app/scripts/*/*/*.js
 *.map
 config.json
 .DS_Store
+uploads
