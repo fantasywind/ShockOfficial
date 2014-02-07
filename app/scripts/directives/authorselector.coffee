@@ -5,7 +5,13 @@ angular.module('shockApp')
     templateUrl: '/partials/authorselector.html'
     restrict: 'E'
     require: 'ngModel'
-    controller: ($rootScope, $scope, $timeout, newArticle)->
+    controller: ($rootScope, $scope, $timeout, newArticle, $element)->
+
+      # Listener for return
+      $input = $element.find('input')
+
+      $input.on 'blur', ->
+        spliter @value + ','
 
       spliter = (text)->
         return if !angular.isString text
