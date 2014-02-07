@@ -33,12 +33,13 @@ photo-selector
     opacity 0
     width 100%
   ul
+    min-height 40px
     background-color #FAFAFA
     padding 10px 6px 3px 6px
     border 1px solid #CCC
     margin 0 0 4px 0
     position relative
-    li
+    li:not(.placeholder)
       list-style none
       display inline-block
       margin 0 4px 4px 0
@@ -104,3 +105,18 @@ photo-selector
     .join
       left -67px
       bottom 0
+    .placeholder
+      list-style none
+      padding-right 14px
+      text-align right
+      > i
+        font-size 10pt
+        color #888
+        position relative
+        left 0
+        top -1px
+      > span
+        color #AAA
+        font-size 11pt
+        font-family sans-serif
+        font-weight 100

@@ -31,7 +31,7 @@ angular.module('shockApp')
 
       # Listener for upload
       fileInput = $element.find('.file-selector')[0]
-      $scope.upload = ->
+      upload = ->
         if fileInput.files.length
           photoUploading = []
 
@@ -53,6 +53,11 @@ angular.module('shockApp')
         # Hide Modal
         modalDOM.modal 'hide'
         return true
+
+      # Listen Selected
+      angular.element(fileInput).bind 'change', ->
+        if @files.length
+          upload()
 
       # Select Photo
       $scope.selectThis = (photo)->
@@ -85,20 +90,4 @@ angular.module('shockApp')
         catch ex
           console.error ex
           return false
-
-      addPhoto
-        source: '//placehold.it/120x80'
-        description: 'aaa'
-        tag: []
-        status: $scope.SUCCESS
-      addPhoto
-        source: '//placehold.it/120x80'
-        description: 'aaa'
-        tag: []
-        status: $scope.ERROR
-      addPhoto
-        source: '//placehold.it/120x80'
-        description: 'aaa'
-        tag: []
-        status: $scope.SUCCESS
   )

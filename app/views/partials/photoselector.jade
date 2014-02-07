@@ -3,6 +3,9 @@ ul.photo-selector
     img(ng-src='{{photo.source}}')
     p(ng-bind='photo.description')
     i.status.fa
+  li.placeholder(ng-show='!photos.length')
+    i.fa.fa-arrow-left
+    span  文章照片上傳
   button.btn.btn-sm.add(type='button', ng-click='showModal()')
     span.fa.fa-plus
     span  上傳圖片
@@ -17,7 +20,6 @@ div.modal.fade
         h4.modal-title 上傳圖片
       div.modal-body
         div.file-selector-cover.btn.btn-large.btn-block(role='button') 選擇檔案
-        input.file-selector(type='file', multiple)
+        input.file-selector(type='file', multiple, accept='image/*')
       div.modal-footer
         button.btn.btn-default(type='button', data-dismiss='modal') 關閉
-        button.btn.btn-primary(type='button', ng-click='upload()') 上傳
