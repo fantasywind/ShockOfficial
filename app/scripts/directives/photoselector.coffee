@@ -4,7 +4,7 @@ angular.module('shockApp')
   .directive('photoSelector', () ->
     templateUrl: '/partials/photoselector'
     restrict: 'E'
-    controller: ($rootScope, $scope, $element, Uploadphoto)->
+    controller: ($rootScope, $scope, $element, Uploadphoto, newArticle)->
       $scope.photos = []
 
       injector = if angular.isFunction $rootScope.injectPhoto then $rootScope.injectPhoto else null
@@ -19,6 +19,15 @@ angular.module('shockApp')
       $scope.LOADING = 'loading'
       $scope.SUCCESS = 'success'
       $scope.ERROR = 'error'
+
+      $scope.showSelector = false
+
+      # Bind PhotoSelector to newArticle Service
+      newArticle.setPhotoSelector 
+        show: ->
+          $scope.showSelector = true
+        hide: ->
+          $scope.showSelector = false
 
       # Tag Parsing
       parseTag = (tag)->

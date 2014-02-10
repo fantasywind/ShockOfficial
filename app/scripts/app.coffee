@@ -87,7 +87,8 @@ angular.module('shockApp', [
         display: "<button ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-picture-o'></i> 照片</button>"
         action: ->
           @.$parent.wrapSelection 'formatBlock', '<figure>'
-          newArticle.showModal()
+          newArticle.showPhotoSelector @
+          #newArticle.showModal()
           true
         activeState: ->
           queryFormatBlockState 'figure'

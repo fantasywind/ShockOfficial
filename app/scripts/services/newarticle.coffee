@@ -15,8 +15,20 @@ angular.module('shockApp')
     UNKNOWN = 'unknown'
     FETCHING = 'fetching'
 
+    _photoSelector = null
+
     # Public API here
     {
+
+      showPhotoSelector: ->
+        if _photoSelector?
+          _photoSelector.show()
+        else
+          console.error "Unknown Photo Selector Module."
+
+      setPhotoSelector: (selectorControl)->
+        _photoSelector = selectorControl
+
       setIsInterview: (newVal) ->
         _isInterview = newVal
 

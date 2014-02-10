@@ -1,4 +1,4 @@
-ul.photo-selector
+ul.photo-selector(ng-show='showSelector')
   li(ng-repeat='photo in photos', ng-class='(photo.selected ? " selected " : " ") + photo.status', ng-click='selectThis(photo)')
     img(ng-src='{{photo.source}}')
     p(ng-bind='photo.description')
