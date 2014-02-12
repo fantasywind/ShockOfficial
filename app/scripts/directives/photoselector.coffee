@@ -4,10 +4,10 @@ angular.module('shockApp')
   .directive('photoSelector', () ->
     templateUrl: '/partials/photoselector'
     restrict: 'E'
-    controller: ($rootScope, $scope, $element, Uploadphoto, newArticle)->
+    controller: ($rootScope, $scope, $element, $filter, Uploadphoto, newArticle)->
       $scope.photos = []
 
-      injector = if angular.isFunction $rootScope.injectPhoto then $rootScope.injectPhoto else null
+      injector = if angular.isFunction newArticle.injectPhoto then newArticle.injectPhoto else null
       console.error 'Undefined injector.' if !injector?
 
       modalDOM = $element.find '.modal'
@@ -73,6 +73,11 @@ angular.module('shockApp')
         if photo.status is 'success'
           photo.selected = !photo.selected
 
+      $scope.injectPhotos = ->
+        selected = $filter('filter') $scope.photos, (photo)->
+          return photo.selected
+        if injector?
+          injector selected
 
       addPhoto = (fields)->
         return if fields is undefined

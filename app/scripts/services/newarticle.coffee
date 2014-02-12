@@ -19,6 +19,24 @@ angular.module('shockApp')
 
     # Public API here
     {
+      injectPhoto: (photos)->
+        photos = [photos] if !angular.isArray photos
+        selection = window.getSelection()
+        # Add after focue element
+        focusElem = angular.element selection.focusNode
+        focusElem = focusElem.parent() if focusElem[0].nodeType is 3
+        containCheck = !!angular.element('text-angular > div.editor-content').find(focusElem).length
+        if selection.type is 'Caret' and containCheck
+          wrapper = angular.element '<photo-gallery>'
+          sources = _.pluck photos, 'source'
+          wrapper.attr 'data-sources', JSON.stringify(sources)
+          focusElem.after wrapper
+          window.ww = wrapper
+          window.cc = focusElem
+        else
+          # Add by default position
+          target = 'DEFAULT'
+        return true
 
       showPhotoSelector: ->
         if _photoSelector?

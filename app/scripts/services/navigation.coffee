@@ -11,6 +11,16 @@ angular.module('shockApp')
         url: '/news'
       }
       {
+        name: 'HEADER_FOODS'
+        ns: 'foods'
+        url: '/foods'
+      }
+      {
+        name: 'HEADER_SHOPS'
+        ns: 'shops'
+        url: '/shops'
+      }
+      {
         name: 'HEADER_LOCAL_VIEWS'
         ns: 'views'
         url: '/views'

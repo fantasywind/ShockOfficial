@@ -20,9 +20,9 @@ PARAGRAPH_HELPER = #8e44ad
 SUBTITLE_BG = rgba(#f1c40f, 12%)
 SUBTITLE_BORDER = rgba(#f1c40f, 60%)
 SUBTITLE_HELPER = #f39c12
-FIGURE_BG = rgba(#2ecc71, 12%)
-FIGURE_BORDER = rgba(#2ecc71, 60%)
-FIGURE_HELPER = #27ae60
+GALLERY_BG = rgba(#2ecc71, 12%)
+GALLERY_BORDER = rgba(#2ecc71, 60%)
+GALLERY_HELPER = #27ae60
 #add-article
   .checkbox-container
     padding 4px
@@ -51,7 +51,7 @@ FIGURE_HELPER = #27ae60
       background-color #FCFCF5
       outline none
       padding 10px 12px
-      p, h2, figure
+      p, h2, photo-gallery
         border 1px solid transparent
         padding 5px 8px !important
         margin 34px 0 6px 0 !important
@@ -68,6 +68,7 @@ FIGURE_HELPER = #27ae60
         text-indent 2em !important
         border-color PARAGRAPH_BORDER !important
         background-color PARAGRAPH_BG !important
+        min-height 32px
         &:before
           content '段落'
           background-color PARAGRAPH_BG
@@ -82,16 +83,19 @@ FIGURE_HELPER = #27ae60
           font-size 11pt
           background-color SUBTITLE_BG
           color SUBTITLE_HELPER
-      figure
-        border-color FIGURE_BORDER !important
-        background-color FIGURE_BG !important
+      photo-gallery
+        border-color GALLERY_BORDER !important
+        background-color GALLERY_BG !important
         text-indent 0 !important
         font-size 14pt !important
+        display block
+        min-height 96px
         &:before
-          content '小標'
+          content '圖片庫'
           font-size 11pt
-          background-color FIGURE_BG
-          color FIGURE_HELPER
+          background-color GALLERY_BG
+          color GALLERY_HELPER
+
 #new-article-author-selector
   .remove-btn
     font-size 10pt

@@ -9,7 +9,7 @@ ul.photo-selector(ng-show='showSelector')
   button.btn.btn-sm.add(type='button', ng-click='showModal()')
     span.fa.fa-plus
     span  上傳圖片
-  button.btn.btn-sm.btn-primary.join(type='button', ng-show="(photos | filter: {selected: true}).length")
+  button.btn.btn-sm.btn-primary.join(type='button', ng-click="injectPhotos()", ng-show="(photos | filter: {selected: true}).length")
     span.fa.fa-arrow-circle-down
     span  加入
 div.modal.fade
