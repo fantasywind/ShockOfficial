@@ -6,3 +6,4 @@ div.mode.selector
 ul.list
   li(ng-repeat='photo in photos')
     img(ng-src='{{photo.thumb200}}')
+    p.description(ng-bind='photo.description')

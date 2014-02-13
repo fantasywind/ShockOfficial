@@ -38,6 +38,7 @@ app.post('/api/photo', api.photo.upload)
 
 // Article
 app.get('/api/news', api.article.newsPage);
+app.get('/api/article/category', api.article.categories);
 
 // Member
 app.get('/api/member/type/:memberName', api.member.typeCheck);

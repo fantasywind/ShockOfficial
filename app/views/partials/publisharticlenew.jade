@@ -22,7 +22,12 @@ div.container
               div.checker
                 span.glyphicon.glyphicon-ok
         div.form-group
-          label.col-sm-2.control-label(for='content') 文章
+          label.col-sm-2.control-label(for='category') 類別
+          div.col-sm-10
+            select#category.form-control
+              option(ng-repeat='category in categories', ng-value='category._id', ng-bind='category.name')
+        div.form-group
+          label.col-sm-2.control-label(for='content') 內文
           div.col-sm-10
             text-angular.main-content(ng-model='mainContent', text-angular-name='mainEditor', ta-text-editor-class="editor-content", ta-toolbar="[['paragraph', 'subtitle', 'picture', 'calendar', 'vote'], ['fit']]")
  

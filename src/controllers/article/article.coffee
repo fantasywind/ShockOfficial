@@ -1,3 +1,6 @@
+mongoose = require 'mongoose'
+ArticleCategory = mongoose.model 'ArticleCategory'
+
 exports.newsPage = (req, res)->
   res.json
     sanxia: [{
@@ -62,3 +65,13 @@ exports.newsPage = (req, res)->
       subtitle: '陶藝大師伍坤山'
       summerize: '沿著土城永豐路往山上走，少了人間煙火，多了鳥囀蟲鳴。這次峽客遠離都市喧囂，來到陶藝大師──伍坤山的家'
     }]
+
+exports.categories = (req, res)->
+  ArticleCategory.find
+    allowNew: true
+  , '-allowNew -__v'
+  , (err, categories)->
+    throw err if err
+    res.json categories
+
+  

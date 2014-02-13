@@ -17,7 +17,9 @@ Article = new mongoose.Schema
     type: Schema.ObjectId
     ref: 'Tag'
   }]
-  category: String
+  category: 
+    type: Schema.ObjectId
+    ref: 'ArticleCategory'
   region: String
   release_date: Date
   create_date:

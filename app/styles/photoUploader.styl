@@ -2,6 +2,8 @@ PHOTO_SELECTOR_HOVER_BORDER = #3498db
 PHOTO_SELECTOR_HOVER_BG = rgba(#3498db, 0.05)
 PHOTO_SELECTOR_ERROR_BORDER = #e74c3c
 PHOTO_SELECTOR_ERROR_BG = rgba(#e74c3c, 0.12)
+PHOTO_SELECTOR_INJECTED_BORDER = #95a5a6
+PHOTO_SELECTOR_INJECTED_BG = rgba(#95a5a6, 0.12)
 PHOTO_SELECTOR_SELECTED_BG = rgba(#3498db, 0.12)
 
 photo-selector
@@ -54,6 +56,10 @@ photo-selector
       &.selected
         border-color PHOTO_SELECTOR_HOVER_BORDER
         background-color PHOTO_SELECTOR_SELECTED_BG
+      &.injected
+        border-color PHOTO_SELECTOR_INJECTED_BORDER
+        background-color PHOTO_SELECTOR_INJECTED_BG
+        opacity 0.4
       &.error
         border-color PHOTO_SELECTOR_ERROR_BORDER
         background-color PHOTO_SELECTOR_ERROR_BG

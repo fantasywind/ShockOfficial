@@ -17,27 +17,47 @@ angular.module('shockApp')
 
     _photoSelector = null
 
+    # Get wrapper
+    getGalleryWrapper = (photos)->
+      wrapper = angular.element '<photo-gallery>'
+      wrapper.attr
+        photos: JSON.stringify(photos)
+        gallerymode: 'block'
+        contenteditable: false
+      $compile(wrapper)($rootScope)
+      return wrapper
+
+    # Check next gallery
+    checkNextGallery = (wrapper)->
+      checkNext = wrapper.next()
+      if !checkNext.length
+        newParagraph = angular.element '<p>'
+        wrapper.after newParagraph
+
     # Public API here
     {
       injectPhoto: (photos)->
         photos = [photos] if !angular.isArray photos
 
-        # Add after focue element
         selection = window.getSelection()
         focusElem = angular.element selection.focusNode
-        focusElem = focusElem.parent() if focusElem[0].nodeType is 3
+        focusElem = focusElem.parent() if focusElem.length and focusElem[0].nodeType is 3
         containCheck = !!angular.element('text-angular > div.editor-content').find(focusElem).length
-        if selection.type is 'Caret' and containCheck
-          wrapper = angular.element '<photo-gallery>'
-          wrapper.attr
-            photos: JSON.stringify(photos)
-            gallerymode: 'block'
-            contenteditable: false
-          $compile(wrapper)($rootScope)
+        wrapper = getGalleryWrapper photos
+        if selection.type is 'Caret' and focusElem.length and containCheck
+          # Add after focue element
           focusElem.after wrapper
         else
           # Add by default position
-          target = 'DEFAULT'
+          angular.element('text-angular > div.editor-content').append wrapper
+
+        checkNextGallery wrapper
+
+        # Change Status
+        for photo in photos
+          photo.status = 'injected' 
+          photo.selected = false
+
         return true
 
       showPhotoSelector: ->
