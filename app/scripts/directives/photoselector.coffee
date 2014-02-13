@@ -47,15 +47,21 @@ angular.module('shockApp')
           for photo in fileInput.files
             p = addPhoto
               source: '//placehold.it/120x80'
+              thumb200: '//placehold.it/200x133'
               description: '未命名圖片'
               tag: []
             photoUploading.push p
 
           q = Uploadphoto.uploadFiles fileInput.files, ->
+
+            # make thumb 200 link
+            thumb200 = @thumb120.replace /([^_]*_)\d*(.*)/g, '$1200$2'
+
             $scope.$apply =>
               p = photoUploading[@queue._cursor]
               p.status = $scope.SUCCESS
               p.source = @thumb120
+              p.thumb200 = thumb200
               p.description = @filename
           q.start_upload()
 

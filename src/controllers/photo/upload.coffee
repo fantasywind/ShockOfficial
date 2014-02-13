@@ -58,7 +58,17 @@ exports.upload = (req, res)->
   fs.writeFile "#{poolPath}/#{hash}_1280.png", buf1280, (err)->
     throw err if err
 
-  # Resize to 1280px width
+  # Resize to 200px width
+  buf200 = imagemagick.convert
+    srcData: buf
+    width: 200
+    height: 133
+    resizeStyle: 'aspectfit'
+    format: "PNG"
+
+  fs.writeFileSync "#{poolPath}/#{hash}_200.png", buf200
+
+  # Resize to 120px width
   buf120 = imagemagick.convert
     srcData: buf
     width: 120

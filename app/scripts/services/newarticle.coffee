@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('shockApp')
-  .factory 'newArticle', ['Publishlogin', '$http', '$log', (Publishlogin, $http, $log)->
+  .factory 'newArticle', ['Publishlogin', '$http', '$log', '$compile', '$rootScope', (Publishlogin, $http, $log, $compile, $rootScope)->
 
     _isInterview = true
 
@@ -21,18 +21,20 @@ angular.module('shockApp')
     {
       injectPhoto: (photos)->
         photos = [photos] if !angular.isArray photos
-        selection = window.getSelection()
+
         # Add after focue element
+        selection = window.getSelection()
         focusElem = angular.element selection.focusNode
         focusElem = focusElem.parent() if focusElem[0].nodeType is 3
         containCheck = !!angular.element('text-angular > div.editor-content').find(focusElem).length
         if selection.type is 'Caret' and containCheck
           wrapper = angular.element '<photo-gallery>'
-          sources = _.pluck photos, 'source'
-          wrapper.attr 'data-sources', JSON.stringify(sources)
+          wrapper.attr
+            photos: JSON.stringify(photos)
+            gallerymode: 'block'
+            contenteditable: false
+          $compile(wrapper)($rootScope)
           focusElem.after wrapper
-          window.ww = wrapper
-          window.cc = focusElem
         else
           # Add by default position
           target = 'DEFAULT'

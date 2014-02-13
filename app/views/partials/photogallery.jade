@@ -1,0 +1,8 @@
+div.mode.selector
+  button(type='button', mode='block', ng-class='gallerymode === "block" ? "active" : ""')
+    i.fa.fa-th-large
+  button(type='button', mode='slide', ng-class='gallerymode === "slide" ? "active" : ""')
+    i.fa.fa-exchange
+ul.list
+  li(ng-repeat='photo in photos')
+    img(ng-src='{{photo.thumb200}}')
