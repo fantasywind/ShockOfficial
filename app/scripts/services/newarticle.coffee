@@ -7,7 +7,11 @@ angular.module('shockApp')
 
     _authors = []
     _photos = []
+    _tags = []
+    _category = null
+    _title = null
     _modal = null
+    _content = null
 
     # Constant
     SELF = 'self'
@@ -45,6 +49,18 @@ angular.module('shockApp')
 
     # Public API here
     {
+      setTitle: (title)->
+        return false if !angular.isString title
+        _title = title
+
+      setCategory: (category)->
+        return false if !angular.isString category
+        _category = category
+
+      setContent: (content)->
+        return false if !angular.isString content
+        _content = content
+
       injectPhoto: (photos)->
         photos = [photos] if !angular.isArray photos
 
@@ -126,5 +142,18 @@ angular.module('shockApp')
             _authors.splice idx, 1
             return true
         return false
+
+      setTags: (tags)->
+        return false if !angular.isArray tags
+        _tags = tags
+
+      submit: ->
+        console.log "Title: #{_title}"
+        console.log "Category: #{_category}"
+        t = []
+        t.push a.name for a in _authors
+        console.log "Authors: #{t.join(', ')}" 
+        console.log "Tags: #{_tags.join(', ')}"
+        console.log "Content: #{_content}"
     }
   ]

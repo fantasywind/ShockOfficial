@@ -4,10 +4,12 @@ angular.module('shockApp')
   .directive('tagSelector', () ->
     templateUrl: "/partials/tagselector"
     restrict: 'E'
-    controller: ($scope, $element) ->
+    controller: ($scope, newArticle) ->
       _commaMatcher = /,/
 
       $scope.tags = []
+
+      newArticle.setTags $scope.tags
 
       $scope.removeTag = (tag)->
         idx = $scope.tags.indexOf tag

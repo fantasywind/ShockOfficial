@@ -6,6 +6,14 @@ angular.module('shockApp')
 
     $scope.categories = []
 
+    # Watch title, category and content
+    $scope.$watch 'title', (newVal)->
+      newArticle.setTitle newVal
+    $scope.$watch 'category', (newVal)->
+      newArticle.setCategory newVal
+    $scope.$watch 'mainContent', (newVal)->
+      newArticle.setContent newVal
+
     $scope.$watch 'isInterview', (newStatus)->
       newArticle.setIsInterview newStatus
 
@@ -16,4 +24,9 @@ angular.module('shockApp')
       cache: true
 
     reqCategory.success (categories)->
-      $scope.categories = categories
+      $scope.categories.push c for c in categories
+      $scope.category = categories[0]._id if !!categories.length
+
+    # Submit
+    $scope.submit = ->
+      newArticle.submit()
