@@ -30,4 +30,10 @@ div.container
           label.col-sm-2.control-label(for='content') 內文
           div.col-sm-10
             text-angular.main-content(ng-model='mainContent', text-angular-name='mainEditor', ta-text-editor-class="editor-content", ta-toolbar="[['paragraph', 'subtitle', 'picture', 'calendar', 'vote'], ['fit']]")
- 
+        div.form-group
+          label.col-sm-2.control-label(for='tag') 標籤
+          div.col-sm-10
+            tag-selector
+        div.form-group
+          div.col-sm-10.col-sm-offset-2
+            button.btn.btn-default(type='submit') 新增文章

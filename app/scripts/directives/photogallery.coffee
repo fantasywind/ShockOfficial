@@ -7,6 +7,4 @@ angular.module('shockApp')
     scope:
       photos: '='
       gallerymode: '@'
-    link: (scope, element, attrs) ->
-      console.dir arguments
   )
