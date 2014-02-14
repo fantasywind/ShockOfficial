@@ -5,9 +5,7 @@ angular.module('shockApp')
     templateUrl: '/partials/authorselector.html'
     restrict: 'E'
     require: 'ngModel'
-    controller: ($rootScope, $scope, $timeout, newArticle, $element, Publishlogin)->
-
-      $scope.selfName = Publishlogin.name
+    controller: ($rootScope, $scope, $timeout, newArticle, $element)->
 
       # Listener for return
       $input = $element.find('input')

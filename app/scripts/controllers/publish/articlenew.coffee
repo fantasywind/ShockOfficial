@@ -17,4 +17,3 @@ angular.module('shockApp')
 
     reqCategory.success (categories)->
       $scope.categories = categories
-      console.log categories

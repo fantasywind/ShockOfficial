@@ -10,6 +10,7 @@ angular.module('shockApp')
     _modal = null
 
     # Constant
+    SELF = 'self'
     AUTHENTICATE = 'shock'
     GUEST = 'guest'
     UNKNOWN = 'unknown'
@@ -33,6 +34,14 @@ angular.module('shockApp')
       if !checkNext.length
         newParagraph = angular.element '<p>'
         wrapper.after newParagraph
+
+    # Watch Login Info Self Name
+    $rootScope.$watch ->
+      Publishlogin.name
+    , (newVal)->
+      selfAuthor = _.findWhere _authors,
+        type: SELF
+      selfAuthor.name = newVal if !!selfAuthor
 
     # Public API here
     {
@@ -78,7 +87,7 @@ angular.module('shockApp')
       addSelfToAuthor: ->
         _authors.push
           name: Publishlogin.name
-          type: AUTHENTICATE
+          type: SELF
 
       addAuthor: (newAuthor)->
         for author in _authors
@@ -106,6 +115,7 @@ angular.module('shockApp')
         GUEST: GUEST
         UNKNOWN: UNKNOWN
         FETCHING: FETCHING
+        SELF: SELF
 
       getAuthors: ->
         _authors

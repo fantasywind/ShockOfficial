@@ -4,6 +4,7 @@ angular.module('shockApp')
   .directive('tagSelector', () ->
     templateUrl: "/partials/tagselector"
     restrict: 'E'
-    link: (scope, element, attrs) ->
+    controller: ($scope, $element) ->
+      console.dir $element
       #element.text 'this is the tagSelector directive'
   )
