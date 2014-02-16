@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('shockApp')
-  .factory 'newArticle', ['Publishlogin', '$http', '$log', '$compile', '$rootScope', (Publishlogin, $http, $log, $compile, $rootScope)->
+  .factory 'newArticle', ['Publishlogin', '$http', '$log', '$compile', '$rootScope', '$location', (Publishlogin, $http, $log, $compile, $rootScope, $location)->
 
     _isInterview = true
 
@@ -168,19 +168,8 @@ angular.module('shockApp')
         _tags = tags
 
       submit: (e)->
-        console.dir e
-        console.log "Title: #{_title}"
-        console.log "Category: #{_category}"
-        t = []
-        t.push a.name for a in _authors
-        console.log "Authors: #{t.join(', ')}" 
-        console.log "Tags: #{_tags.join(', ')}"
-        console.log "Content: #{_content}"
-        console.log "Injected photos: "
-        console.dir _injectedPhotos
-        console.log "Uploaded photos: "
-        console.dir _photos
 
+        # Simplize
         _a = []
         for author in _authors
           _a.push
@@ -194,6 +183,7 @@ angular.module('shockApp')
         for photo in _photos
           _p.push photo.photo_id
 
+        # Serialize
         data =
           title: _title
           category_id: _category
@@ -202,6 +192,7 @@ angular.module('shockApp')
           content: _content
           photos: _p
 
+        # Send
         req = $http
           url: '/api/article'
           method: 'POST'
@@ -213,6 +204,7 @@ angular.module('shockApp')
         req.success (resp)->
           if resp.status
             console.log "Posted Article: #{_title}"
+            $location.path '/publish/article?status=success'
           else
             console.error "Post article error: (#{resp.code}) #{resp.msg}"
     }

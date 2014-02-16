@@ -125,7 +125,6 @@ exports.newArticle = (req, res)->
 
     res.json
       status: true
-      article: article
 
   # Append tags
   for tag in req.body.tags
