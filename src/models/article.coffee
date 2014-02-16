@@ -8,7 +8,9 @@ Article = new mongoose.Schema
     ref: 'Member'
   }]
   content: String
-  print: String
+  print:
+    type: Schema.ObjectId
+    ref: 'Print'
   photo: [{
     type: Schema.ObjectId
     ref: 'Photo'
@@ -21,7 +23,9 @@ Article = new mongoose.Schema
     type: Schema.ObjectId
     ref: 'ArticleCategory'
   region: String
-  release_date: Date
+  release_date:
+    type: Date
+    default: null
   create_date:
     type: Date
     default: Date.now
