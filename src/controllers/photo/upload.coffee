@@ -3,6 +3,8 @@ fs = require 'fs'
 path = require 'path'
 crypto = require 'crypto'
 poolPath = path.resolve __dirname, '../../../uploads/photos'
+mongoose = require('mongoose')
+Photo = mongoose.model 'Photo'
 
 # Check permission
 try
@@ -78,8 +80,15 @@ exports.upload = (req, res)->
 
   fs.writeFileSync "#{poolPath}/#{hash}_120.png", buf120
 
+  photo = new Photo
+    description: req.files.file.name
+    source: "/photos/#{hash}"
+    uploader: req.user._id
+  photo.save()
+
   res.json
     status: 'ok'
+    photo_id: photo._id
     thumb: "/photos/#{hash}_120.png"
     src: "/photos/#{hash}"
     name: req.files.file.name

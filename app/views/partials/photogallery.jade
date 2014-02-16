@@ -3,6 +3,8 @@ gallery-mode-selector.mode.selector
     checker.fa.fa-th-large
   button(type='button', mode='slide', ng-class='gallerymode === "slide" ? "active" : ""')
     checker.fa.fa-exchange
+  button.remove(type='button', ng-click='removeAllInjected()')
+    checker.fa.fa-times
 ul.list.photo-gallery(ng-class='gallerymode')
   li(ng-repeat='photo in photos')
     img(ng-src='{{photo.thumb200}}')

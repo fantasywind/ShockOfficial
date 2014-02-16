@@ -12,6 +12,9 @@ angular.module('shockApp')
     _title = null
     _modal = null
     _content = null
+    _injectedPhotos = []
+    
+    window.s = _photos
 
     # Constant
     SELF = 'self'
@@ -61,9 +64,13 @@ angular.module('shockApp')
         return false if !angular.isString content
         _content = content
 
+      uploadedPhoto: (photo)->
+        _photos.push photo
+
       injectPhoto: (photos)->
         photos = [photos] if !angular.isArray photos
 
+        _injectedPhotos.push photo for photo in photos
         selection = window.getSelection()
         focusElem = angular.element selection.focusNode
         focusElem = focusElem.parent() if focusElem.length and focusElem[0].nodeType is 3
@@ -82,6 +89,18 @@ angular.module('shockApp')
         for photo in photos
           photo.status = 'injected' 
           photo.selected = false
+
+        return true
+
+      removeInjectedPhotos: (photos)->
+        return false if !angular.isArray photos
+
+        for photo in photos
+          for p, idx in _injectedPhotos
+            if p.source is photo.source and p.$$hashKey is photo.$$hashKey
+              p.status = 'success'
+              _injectedPhotos.splice idx, 1
+              break
 
         return true
 
@@ -147,7 +166,8 @@ angular.module('shockApp')
         return false if !angular.isArray tags
         _tags = tags
 
-      submit: ->
+      submit: (e)->
+        console.dir e
         console.log "Title: #{_title}"
         console.log "Category: #{_category}"
         t = []
@@ -155,5 +175,29 @@ angular.module('shockApp')
         console.log "Authors: #{t.join(', ')}" 
         console.log "Tags: #{_tags.join(', ')}"
         console.log "Content: #{_content}"
+        console.log "Injected photos: "
+        console.dir _injectedPhotos
+        console.log "Uploaded photos: "
+        console.dir _photos
+
+        req = $http
+          url: '/api/article'
+          method: 'POST'
+          data:
+            title: _title
+            category_id: _category
+            authors: _authors
+            tags: _tags
+            content: _content
+            photos: _photos
+
+        req.error (data, status, headers, config)->
+          console.error "Post article error: #{data.toString()}"
+
+        req.success (resp)->
+          if resp.status
+            console.log "Posted Article: #{_title}"
+          else
+            console.error "Post article error: (#{resp.code}) #{resp.msg}"
     }
   ]

@@ -1,6 +1,6 @@
 photo-gallery
   .mode.selector
-    button
+    button:not(.remove)
       background-color rgba(#F7F7F7, 0.82)
       border 1px solid #DDD
       border-radius 1px
@@ -23,6 +23,15 @@ photo-gallery
         color #000
     .fa
       font-size 9pt
+    .remove
+      float right
+      background-color transparent
+      border 0
+      margin -6px -3px 0 0
+      outline none
+      color #777
+      &:hover
+        color #222
   .list
     margin 6px 0 0 0
     padding 10px 2px

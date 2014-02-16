@@ -33,6 +33,7 @@ angular.module('shockApp')
               @thumb120 = resp.thumb
               @origin = resp.src
               @filename = resp.name
+              @photo_id = resp.photo_id
             else
               @status = @ERROR
             @queue.eachFinish.call @

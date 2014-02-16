@@ -72,28 +72,40 @@ angular.module('shockApp', [
     # Text Editor
     $rootScope.textAngularTools =
       paragraph:
-        display: "<button ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-align-justify'></i> 段落</button>"
+        display: "<button type='button' ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-align-justify'></i> 段落</button>"
         action: ->
-          @.$parent.wrapSelection 'formatBlock', '<p>'
+          @$parent.wrapSelection 'formatBlock', '<p>'
         activeState: ->
           queryFormatBlockState 'p'
       subtitle:
-        display: "<button ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-font'></i> 小標</button>"
+        display: "<button type='button' ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-font'></i> 小標</button>"
         action: ->
-          @.$parent.wrapSelection 'formatBlock', '<h2>'
+          @$parent.wrapSelection 'formatBlock', '<h2>'
         activeState: ->
           queryFormatBlockState 'h2'
       picture:
-        display: "<button ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-picture-o'></i> 照片</button>"
+        display: "<button type='button' ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-picture-o'></i> 照片</button>"
         action: ->
-          @.$parent.wrapSelection 'formatBlock', '<figure>'
+          @$parent.wrapSelection 'formatBlock', '<figure>'
           newArticle.showPhotoSelector @
           #newArticle.showModal()
           true
         activeState: ->
           queryFormatBlockState 'figure'
+      calendar:
+        display: "<button type='button' ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-calendar'></i> 日期</button>",
+        action: ->
+          @$parent.wrapSelection 'formatBlock', '<event-calendar>'
+        activeState: ->
+          queryFormatBlockState 'event-calendar'
+      vote: 
+        display: "<button type='button' ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-bar-chart-o'></i> 投票</button>",
+        action: ->
+          @$parent.wrapSelection 'formatBlock', '<voter>'
+        activeState: ->
+          queryFormatBlockState 'voter'
       fit:
-        display: "<button ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-magic'></i> 自動修正</button>"
+        display: "<button type='button' ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-magic'></i> 自動修正</button>"
         action: ->
           editor = angular.element 'text-angular'
           editor.find('.editor-content p').removeAttr 'style'

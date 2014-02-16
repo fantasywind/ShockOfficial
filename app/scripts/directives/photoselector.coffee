@@ -50,6 +50,7 @@ angular.module('shockApp')
               thumb200: '//placehold.it/200x133'
               description: '未命名圖片'
               tag: []
+              photo_id: null
             photoUploading.push p
 
           q = Uploadphoto.uploadFiles fileInput.files, ->
@@ -63,6 +64,8 @@ angular.module('shockApp')
               p.source = @thumb120
               p.thumb200 = thumb200
               p.description = @filename
+              p.photo_id = @photo_id
+              newArticle.uploadedPhoto p
           q.start_upload()
 
         # Hide Modal

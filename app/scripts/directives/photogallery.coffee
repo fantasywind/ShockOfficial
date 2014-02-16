@@ -7,4 +7,9 @@ angular.module('shockApp')
     scope:
       photos: '='
       gallerymode: '@'
+    controller: ($scope, newArticle, $element)->
+      $scope.removeAllInjected = ->
+        newArticle.removeInjectedPhotos $scope.photos
+        $element.remove()
+        return true
   )
