@@ -1,1 +1,5 @@
-input.form-control(type='text', placeholder='請輸入文章標籤以利搜尋，並以半型逗點(,)分隔。')
+input.form-control(ng-model='tagList', type='text', placeholder='請輸入文章標籤以利搜尋，並以半型逗點(,)分隔。')
+div.tag-container
+  div.tag(ng-repeat='tag in tags')
+    span.name(ng-bind='tag')
+    span.remove-btn.fa.fa-times-circle(ng-click='removeTag(tag)')

@@ -7,11 +7,11 @@ div.container
       h1 新增文章
   div.row#add-article-form-container
     div.col-lg-12
-      form#add-article.form-horizontal(role='form')
+      form#add-article.form-horizontal(role='form', ng-submit='submit()')
         div.form-group
           label.col-sm-2.control-label(for='title') 主標題
           div.col-sm-10
-            input.form-control(type='text', placeholder='請輸入文章標題')
+            input.form-control(ng-model='title', type='text', placeholder='請輸入文章標題')
         div.form-group
           label.col-sm-2.control-label(for='author') 撰稿
           div.col-sm-8
@@ -24,8 +24,7 @@ div.container
         div.form-group
           label.col-sm-2.control-label(for='category') 類別
           div.col-sm-10
-            select#category.form-control
-              option(ng-repeat='category in categories', ng-value='category._id', ng-bind='category.name')
+            select#category.form-control(ng-model='category', ng-if='categories.length', ng-options='category._id as category.name for category in categories')
         div.form-group
           label.col-sm-2.control-label(for='content') 內文
           div.col-sm-10
