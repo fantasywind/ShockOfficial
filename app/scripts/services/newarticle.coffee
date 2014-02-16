@@ -139,6 +139,7 @@ angular.module('shockApp')
         request.success (result)->
           if result.status is 'success'
             newAuthor.type = result.memberType
+            newAuthor.member_id = result.memberId
 
         request.error (err)->
           $log.error err
@@ -180,16 +181,31 @@ angular.module('shockApp')
         console.log "Uploaded photos: "
         console.dir _photos
 
+        _a = []
+        for author in _authors
+          _a.push
+            name: author.name
+            type: author.type
+
+        _t = []
+        _t.push tag for tag in _tags
+
+        _p = []
+        for photo in _photos
+          _p.push photo.photo_id
+
+        data =
+          title: _title
+          category_id: _category
+          authors: _a
+          tags: _t
+          content: _content
+          photos: _p
+
         req = $http
           url: '/api/article'
           method: 'POST'
-          data:
-            title: _title
-            category_id: _category
-            authors: _authors
-            tags: _tags
-            content: _content
-            photos: _photos
+          data: $.param data
 
         req.error (data, status, headers, config)->
           console.error "Post article error: #{data.toString()}"

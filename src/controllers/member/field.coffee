@@ -15,10 +15,12 @@ exports.typeCheck = (req, res)->
           res.json
             status: 'success'
             memberType: member.type
+            memberId: member._id
         else
           res.json
             status: 'success'
             memberType: 'UNKNOWN'
+            memberId: null
   else
     res.json
       status: 'fail'

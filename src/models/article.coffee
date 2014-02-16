@@ -7,6 +7,7 @@ Article = new mongoose.Schema
     type: Schema.ObjectId
     ref: 'Member'
   }]
+  author_external: [String]
   content: String
   print:
     type: Schema.ObjectId

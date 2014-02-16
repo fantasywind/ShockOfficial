@@ -4,7 +4,9 @@ Schema = mongoose.Schema
 
 Member = new mongoose.Schema
   local:
-    email: String
+    email:
+      type: String
+      unique: true
     password: String
   facebook:
     id: String

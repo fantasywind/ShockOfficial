@@ -1,5 +1,23 @@
+sanitizer = require 'sanitizer'
 mongoose = require 'mongoose'
 ArticleCategory = mongoose.model 'ArticleCategory'
+Article = mongoose.model 'Article'
+Tag = mongoose.model 'Tag'
+
+# 插入標籤
+appendTag = (tagName, article)->
+  Tag.findOne
+    name: tagName
+  , (err, tag)->
+    throw err if err
+
+    if !tag?
+      tag = new Tag
+        name: sanitizer.sanitize tagName
+    tag.count += 1
+    tag.save()
+    article.tag.push tag._id
+    article.save()
 
 exports.newsPage = (req, res)->
   res.json
@@ -74,4 +92,41 @@ exports.categories = (req, res)->
     throw err if err
     res.json categories
 
-  
+exports.newArticle = (req, res)->
+  checklist = ['title', 'content', 'category_id', 'tags', 'authors']
+  for checker in checklist
+    if !req.body[checker]?
+      return res.json
+        status: false
+        code: 1
+        msg: "Invalid Parameter"
+
+  # Sanitizer
+  req.body.title = sanitizer.sanitize req.body.title
+  req.body.content = sanitizer.sanitize req.body.content
+
+  article = new Article
+    title: req.body.title
+    content: req.body.content
+    category: req.body.category_id
+
+  for author in req.body.authors
+    if author.type is 'self'
+      article.author.push req.user._id
+    else if author.member_id?
+      article.author.push author.member_id
+    else
+      article.author_external.push sanitizer.sanitize author.name
+
+  article.photo = req.body.photos if req.body.photos
+
+  article.save (err)->
+    throw err if err
+
+    res.json
+      status: true
+      article: article
+
+  # Append tags
+  for tag in req.body.tags
+    appendTag tag, article
