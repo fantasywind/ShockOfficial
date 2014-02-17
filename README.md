@@ -3,7 +3,7 @@ ShockOfficial
 
 # Preinstall
 * node.js >= 0.10
-* imagemagick--dev
+* libmagick++-dev
 * bower
 * grunt
 
@@ -13,4 +13,12 @@ Ubuntu
 
 ```shell
 sudo apt-get install libmagick++-dev
+```
+
+Mac OS X
+
+please install brew first.
+```
+brew install pkgconfig
+brew install imagemagick
 ```
