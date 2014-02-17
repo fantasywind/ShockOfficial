@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('shockApp')
-  .factory 'newArticle', ['Publishlogin', '$http', '$log', '$compile', '$rootScope', '$location', (Publishlogin, $http, $log, $compile, $rootScope, $location)->
+  .factory 'newArticle', ['Publishlogin', '$http', '$log', '$compile', '$rootScope', (Publishlogin, $http, $log, $compile, $rootScope)->
 
     _isInterview = true
 
@@ -13,8 +13,8 @@ angular.module('shockApp')
     _modal = null
     _content = null
     _injectedPhotos = []
-    
-    window.s = _photos
+    _whenError = ->
+    _whenSuccess = ->
 
     # Constant
     SELF = 'self'
@@ -52,6 +52,12 @@ angular.module('shockApp')
 
     # Public API here
     {
+      whenError: (callback)->
+        _whenError = callback if angular.isFunction callback
+
+      whenSuccess: (callback)->
+        _whenSuccess = callback if angular.isFunction callback
+
       setTitle: (title)->
         return false if !angular.isString title
         _title = title
@@ -203,9 +209,10 @@ angular.module('shockApp')
 
         req.success (resp)->
           if resp.status
+            _whenSuccess()
             console.log "Posted Article: #{_title}"
-            $location.path '/publish/article?status=success'
           else
+            _whenError resp.code, resp.msg
             console.error "Post article error: (#{resp.code}) #{resp.msg}"
     }
   ]

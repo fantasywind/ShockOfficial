@@ -52,6 +52,9 @@ angular.module('shockApp', [
       .when '/publish',
         templateUrl: 'partials/publishdashboard.html'
         controller: 'PublishDashboardCtrl'
+      .when '/publish/article',
+        templateUrl: 'partials/publisharticlelist.html'
+        controller: 'PublishArticlelistCtrl'
       .when '/publish/article/new',
         templateUrl: 'partials/publisharticlenew.html'
         controller: 'PublishArticlenewCtrl'

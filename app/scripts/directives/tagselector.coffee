@@ -17,6 +17,12 @@ angular.module('shockApp')
 
       $scope.$watch 'tagList', (tagInput)->
         return false if tagInput is undefined or !_commaMatcher.test tagInput
+        parseTag tagInput
+
+      $scope.blurTag = (e)->
+        parseTag e.target.value + ','
+
+      parseTag = (tagInput)->
         tags = tagInput.split ','
         for tag in tags
           continue if tag is '' or $scope.tags.indexOf(tag) isnt -1

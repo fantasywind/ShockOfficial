@@ -27,8 +27,8 @@ angular.module('shockApp')
           name: 'PUBLISH_HEADER_ARTICLE_NEW'
           src: '/publish/article/new'
         },{
-          name: 'PUBLISH_HEADER_ARTICLE_ME'
-          src: '/publish/article/me'
+          name: 'PUBLISH_HEADER_ARTICLE_LIST'
+          src: '/publish/article'
         }]
       }]
   ])

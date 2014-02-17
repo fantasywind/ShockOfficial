@@ -2,7 +2,26 @@ ShockMain = #9c2f33
 Highlight = #3AA9E8
 HighlightThin = #154A69
 ErrorColor = #e74c3c
+SuccessColor = #2ecc71
 LightBackgroundHoverColor = #FAFAFA
+
+// Global Message Block
+p.message
+  display inline-block
+  padding 4px 10px
+  border 1px solid #DDD
+  border-left-width 4px
+  background-color #FCFCFC
+  margin 0 8px
+  position relative
+  top 1px
+  &.error
+    border-color rgba(ErrorColor, 40%)
+    background-color rgba(ErrorColor, 12%)
+  &.success
+    border-color rgba(SuccessColor, 40%)
+    background-color rgba(SuccessColor, 12%)
+
 #page-header
   background-color ShockMain
   color #FFF

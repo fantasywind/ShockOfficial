@@ -21,5 +21,12 @@
   "PUBLISH_HEADER_ARTICLE": "文章",
   "PUBLISH_HEADER_ARTICLE_NEW": "新增文章",
   "PUBLISH_HEADER_ARTICLE_ME": "我的文章",
-  "PUBLISH_SYSTEM": "出版系統"
+  "PUBLISH_HEADER_ARTICLE_LIST": "文章列表",
+  "PUBLISH_SYSTEM": "出版系統",
+  "ERROR_INVALID_PARAMETER": "失敗：錯誤的輸入值，請洽系統管理員。",
+  "ERROR_SYSTEM_FAULT": "失敗：未知的原因，請洽系統管理員。",
+  "ERROR_NOT_FOUND": "失敗：資料錯誤，請嘗試重新整理或洽系統管理員。",
+  "ERROR_PASSWORD": "失敗：密碼錯誤，請重新嘗試。",
+  "ERROR_DATABASE": "失敗：資料錯誤，請嘗試重新整理或洽系統管理員。",
+  "SUCCESS_POST_ARTICLE": "成功新增文章，請靜候審核通過。"
 }

@@ -36,3 +36,5 @@ div.container
         div.form-group
           div.col-sm-10.col-sm-offset-2
             button.btn.btn-default(type='submit') 新增文章
+            p.error.message(ng-show='errorMessage', translate='{{errorMessage}}')
+            p.success.message(translate='SUCCESS_POST_ARTICLE', ng-show='successPost')
