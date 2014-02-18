@@ -30,5 +30,14 @@ angular.module('shockApp')
           name: 'PUBLISH_HEADER_ARTICLE_LIST'
           src: '/publish/article'
         }]
+      },{
+        name: 'PUBLISH_HEADER_DISCUSS'
+        src: '/publish/discuss'
+      },{
+        name: 'PUBLISH_HEADER_MARKETING'
+        src: '/publish/marketing'
+      },{
+        name: 'PUBLISH_HEADER_MEMBER'
+        src: '/publish/member'
       }]
   ])
