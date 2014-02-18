@@ -32,7 +32,19 @@ Member = new mongoose.Schema
     type: String
     enum: ['guest', 'shock']
     default: 'guest'
-  privileges: [String]
+  privileges: [
+    type: String
+    enum: [
+      'global_article_editor'
+      'audit_level_1'
+      'audit_level_2'
+      'audit_level_3'
+      'publish_master'
+      'publish_level_1'
+      'publish_level_2'
+      'publish_level_3'
+    ]
+  ]
 
 # Hash generator
 Member.methods.generateHash = (password)->

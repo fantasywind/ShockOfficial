@@ -1,6 +1,8 @@
 INTERNAL_COLOR = #3498db
 EXTERNAL_COLOR = #95a5a6
 #publish-article-list
+  td
+    vertical-align middle
   .author
     color #222
     display inline-block
@@ -13,9 +15,15 @@ EXTERNAL_COLOR = #95a5a6
     &.internal
       background-color rgba(INTERNAL_COLOR, 20%)
       border-color rgba(INTERNAL_COLOR, 60%)
+      &:hover
+        background-color rgba(INTERNAL_COLOR, 28%)
+        border-color rgba(INTERNAL_COLOR, 80%)
     &.external
       background-color rgba(EXTERNAL_COLOR, 20%)
       border-color rgba(EXTERNAL_COLOR, 60%)
+      &:hover
+        background-color rgba(EXTERNAL_COLOR, 28%)
+        border-color rgba(EXTERNAL_COLOR, 80%)
   .float-right
     float right
     display inline-block

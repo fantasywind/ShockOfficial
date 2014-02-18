@@ -38,7 +38,9 @@ angular.module('shockApp')
     newArticle.whenSuccess ->
       $scope.successPost = true
       $timeout ->
-        $location.path '/publish/article?status=success'
+        $location.path('/publish/article').search
+          msg: 'SUCCESS_ADD_ARTICLE'
+          type: 'success'
       , 800
 
     # Submit

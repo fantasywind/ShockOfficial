@@ -1,13 +1,13 @@
 div.container
   div.row
     div.col-lg-12
-      publish-header(page='Dashboard')
+      publish-header(page='Article')
   div.row
     div.col-lg-12
       h1 文章列表
   div.row
     div.col-md-12#publish-article-list
-      table.table.table-bordered.table-hover
+      table.table.table-bordered
         thead
           tr
             th 分類
@@ -30,4 +30,6 @@ div.container
               span.author.external(ng-repeat='author in article.author_external', ng-bind='author')
             td {{article.dateStr}}
             td
-              a.btn.btn-sm.btn-default(ng-href="/publish/article/edit/{{article._id}}", ng-show='{{(article.author | filter:userID).length}}') 修改
+              div.btn-group
+                a.btn.btn-sm.btn-default(ng-href="/publish/article/edit/{{article._id}}", ng-show="{{(article.author | filter:userID).length || userPrivileges.indexOf('global_article_editor') !== -1}}") 修改
+                a.btn.btn-sm.btn-default(ng-href="/publish/article/audit/{{article._id}}", ng-show="{{userPrivileges.indexOf('global_article_editor') !== -1}}") 審稿

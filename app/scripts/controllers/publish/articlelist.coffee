@@ -5,6 +5,8 @@ angular.module('shockApp')
 
     Publishlogin.loginedDo ->
       $scope.userID = Publishlogin.uid
+      $scope.userPrivileges = Publishlogin.privileges
+      console.dir $scope
 
     page = parseInt $routeParams.p or 1, 10
     $scope.articles = []
@@ -20,7 +22,7 @@ angular.module('shockApp')
 
     listReq.success (resp)->
       if resp.status
-        article.dateStr = new XDate(article.create_date).toString('yyyy-MM-dd (HH 時)') for article in resp.articles
+        article.dateStr = new XDate(article.create_date).toString('yyyy-MM-dd | HH時') for article in resp.articles
         $scope.articles = $scope.articles.concat resp.articles
       else
         console.error "Get List Failed: #{resp.msg}"
