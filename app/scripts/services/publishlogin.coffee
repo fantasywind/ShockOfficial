@@ -11,6 +11,7 @@ angular.module('shockApp')
     @status = @LOGINSTATUS.UNLOGIN
     @shockMember = false
     @name = null
+    @uid = null
 
     # 暫存登入後執行函式
     checked = false
@@ -70,6 +71,7 @@ angular.module('shockApp')
           @name = result.name or ''
           result.accountType ?= 'guest'
           @shockMember = if result.accountType is 'shock' then true else false
+          @uid = result.user_id
           @loginSuccess()
           success()
         else

@@ -24,6 +24,7 @@ exports.loginSuccess = (req, res)->
     name: req.user.name
     accountType: req.user.type
     privileges: req.user.privileges
+    user_id: req.user._id
 
 exports.logout = (req, res)->
   res.clearCookie 'access_token',

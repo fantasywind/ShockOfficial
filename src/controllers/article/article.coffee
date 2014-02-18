@@ -129,3 +129,15 @@ exports.newArticle = (req, res)->
   # Append tags
   for tag in req.body.tags
     appendTag tag, article
+
+exports.articleList = (req, res)->
+  Article.find()
+    .populate('author', 'name')
+    .populate('category', 'name')
+    .select('title author author_external region category create_date')
+    .exec (err, articles)->
+      throw err if err
+
+      res.json
+        status: true
+        articles: articles

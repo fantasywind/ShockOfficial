@@ -1,0 +1,31 @@
+INTERNAL_COLOR = #3498db
+EXTERNAL_COLOR = #95a5a6
+#publish-article-list
+  .author
+    color #222
+    display inline-block
+    border-width 1px
+    border-style solid
+    padding 1px 4px
+    margin 0 5px 3px 0
+    text-decoration none
+    cursor pointer
+    &.internal
+      background-color rgba(INTERNAL_COLOR, 20%)
+      border-color rgba(INTERNAL_COLOR, 60%)
+    &.external
+      background-color rgba(EXTERNAL_COLOR, 20%)
+      border-color rgba(EXTERNAL_COLOR, 60%)
+  .float-right
+    float right
+    display inline-block
+  .helper
+    margin 0
+    cursor default
+    .internal
+      color INTERNAL_COLOR
+      padding-right 5px
+      border-right 2px solid #DDD
+      margin-right 5px
+    .external
+      color EXTERNAL_COLOR

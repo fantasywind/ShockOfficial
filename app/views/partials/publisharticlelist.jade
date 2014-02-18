@@ -6,3 +6,28 @@ div.container
     div.col-lg-12
       h1 文章列表
   div.row
+    div.col-md-12#publish-article-list
+      table.table.table-bordered.table-hover
+        thead
+          tr
+            th 分類
+            th 地區
+            th 文章標題
+            th
+              span 作者
+              p.helper.float-right
+                span.internal Shock 成員
+                span.external 外部
+            th 撰寫時間
+            th
+        tbody
+          tr(ng-repeat='article in articles')
+            td {{article.category.name}}
+            td {{article.region ? article.region : '未定'}}
+            td {{article.title}}
+            td
+              a.author.internal(ng-repeat='author in article.author', ng-bind='author.name')
+              span.author.external(ng-repeat='author in article.author_external', ng-bind='author')
+            td {{article.dateStr}}
+            td
+              a.btn.btn-sm.btn-default(ng-href="/publish/article/edit/{{article._id}}", ng-show='{{(article.author | filter:userID).length}}') 修改
