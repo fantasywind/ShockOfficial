@@ -6,7 +6,9 @@ angular.module('shockApp')
     Publishlogin.loginedDo ->
       $scope.userID = Publishlogin.uid
       $scope.userPrivileges = Publishlogin.privileges
-      console.dir $scope
+
+    $scope.alertType = "alert-#{$routeParams.type}"
+    $scope.alertMsg = $routeParams.msg
 
     page = parseInt $routeParams.p or 1, 10
     $scope.articles = []

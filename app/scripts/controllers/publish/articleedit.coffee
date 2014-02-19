@@ -18,4 +18,4 @@ angular.module('shockApp')
         console.error "Get edit auth fail."
         $location.path('/publish/article').search
           msg: 'ERROR_EDIT_ARTICLE'
-          type: 'error'
+          type: 'danger'

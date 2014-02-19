@@ -6,6 +6,9 @@ div.container
     div.col-lg-12
       h1 文章列表
   div.row
+    div.col-lg-12
+      div.alert(ng-class='alertType', translate='{{alertMsg}}', ng-show='alertType && alertMsg')
+  div.row
     div.col-md-12#publish-article-list
       table.table.table-bordered
         thead
