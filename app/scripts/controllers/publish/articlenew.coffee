@@ -1,13 +1,51 @@
 'use strict'
 
 angular.module('shockApp')
-  .controller 'PublishArticlenewCtrl', ($scope, $http, $timeout, $location, newArticle, errorMessage)->
+  .controller 'PublishArticlenewCtrl', ($scope, $http, $timeout, $routeParams, $location, newArticle, errorMessage)->
     $scope.isInterview = true
     $scope.errorMessage = false
     $scope.successPost = false
     $scope.categories = []
+    $scope.articleCategory = null
 
     _submitting = false
+
+    # Mode
+    $scope.editorMode = $routeParams.mode
+    $scope.editArticleId = $routeParams.articleId
+
+    switch $routeParams.mode
+      when 'edit'
+        $scope.modeTitle = 'EDIT_ARTICLE'
+      else
+        $scope.modeTitle = "ADD_ARTICLE"
+
+    if $scope.editorMode is 'edit'
+      $location.path '/publish/article' if !$routeParams.articleId
+
+      req = $http
+        method: 'GET'
+        url: "/api/article/edit/#{$routeParams.articleId}"
+
+      req.error (error, status)->
+        console.error error.toString()
+
+      req.success (resp)->
+        if resp.status
+          console.log 'Ready to edit article.'
+          $scope.title = resp.article.title
+          if $scope.categories.length
+            # Direct select category
+            $scope.category = resp.article.category
+          else
+            # Cache for waiting categories loaded
+            $scope.articleCategory = resp.article.category
+          $scope.mainContent = resp.article.content
+        else
+          console.error "Get edit auth fail."
+          $location.path('/publish/article').search
+            msg: 'ERROR_EDIT_ARTICLE'
+            type: 'danger'
 
     # Watch title, category and content
     $scope.$watch 'title', (newVal)->
@@ -28,7 +66,8 @@ angular.module('shockApp')
 
     reqCategory.success (categories)->
       $scope.categories.push c for c in categories
-      $scope.category = categories[0]._id if !!categories.length
+      if !!categories.length 
+        $scope.category = if !$scope.articleCategory then categories[0]._id else $scope.articleCategory
 
     # Error Message
     newArticle.whenError (code, msg)->

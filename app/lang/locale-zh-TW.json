@@ -33,5 +33,7 @@
   "ERROR_DATABASE": "失敗：資料錯誤，請嘗試重新整理或洽系統管理員。",
   "ERROR_EDIT_ARTICLE": "失敗，您沒有編輯本文章的權限。",
   "SUCCESS_POST_ARTICLE": "成功新增文章，請靜候審核通過。",
-  "SUCCESS_ADD_ARTICLE": "成功新增文章，請靜候審核通過。"
+  "SUCCESS_ADD_ARTICLE": "成功新增文章，請靜候審核通過。",
+  "ADD_ARTICLE": "新增文章",
+  "EDIT_ARTICLE": "編輯文章"
 }
