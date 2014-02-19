@@ -141,3 +141,24 @@ exports.articleList = (req, res)->
       res.json
         status: true
         articles: articles
+
+exports.editArticle = (req, res)->
+  superEditor = if req.user.privileges.indexOf('global_article_editor') isnt -1 then true else false
+
+  finder = Article.findOne()
+    .where('_id', req.params.articleId)
+
+  finder.where('author', req.user._id) if !superEditor
+
+  finder.exec (err, article)->
+    throw err if err
+
+    if !!article
+      res.json
+        status: true
+        article: article
+    else
+      res.json
+        status: false
+        code: 100
+        msg: "NOT_FOUND_RECORD"

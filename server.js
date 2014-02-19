@@ -41,6 +41,7 @@ app.get('/api/news', api.article.newsPage);
 app.get('/api/article/category', api.article.categories);
 app.get('/api/article', api.article.articleList);
 app.post('/api/article', api.article.newArticle);
+app.get('/api/article/edit/:articleId', api.article.editArticle)
 
 // Member
 app.get('/api/member/type/:memberName', api.member.typeCheck);
