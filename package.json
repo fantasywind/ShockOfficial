@@ -45,7 +45,7 @@
     "passport-local": "~0.1.6",
     "underscore": "~1.5.2",
     "imagemagick-native": "~0.2.9",
-    "sanitizer": "~0.1.1"
+    "sanitize-caja": "~0.0.0"
   },
   "engines": {
     "node": ">=0.8.0"

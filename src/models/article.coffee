@@ -12,10 +12,21 @@ Article = new mongoose.Schema
   print:
     type: Schema.ObjectId
     ref: 'Print'
-  photo: [{
+  photo: [
     type: Schema.ObjectId
     ref: 'Photo'
-  }]
+  ]
+  gallery: [
+    photos: [
+      type: Schema.ObjectId
+      ref: 'Photo'
+    ]
+    mode:
+      type: String
+      enum: ['block', 'slide']
+      default: 'block'
+    guid: String
+  ]
   tag: [{
     type: Schema.ObjectId
     ref: 'Tag'

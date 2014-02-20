@@ -12,4 +12,7 @@ angular.module('shockApp')
         newArticle.removeInjectedPhotos $scope.photos
         $element.remove()
         return true
+
+      $scope.$watch 'gallerymode', (newValue)->
+        $element.attr 'mode', newValue
   )

@@ -189,6 +189,38 @@ angular.module('shockApp')
         for photo in _photos
           _p.push photo.photo_id
 
+        _g = []
+
+        _contentElem = angular.element _content
+        _finalContainer = angular.element "<div>"
+        for elem in _contentElem
+          switch elem.nodeName
+            when "PHOTO-GALLERY"
+              guid = chance.guid()
+
+              origin = angular.element elem
+
+              # Parse photos
+              photos = []
+              photosTmp = JSON.parse origin.attr 'photos'
+              for photo in photosTmp
+                photos.push photo.photo_id
+
+              mode = origin.attr 'mode'
+              _g.push
+                photos: photos
+                mode: mode
+                guid: guid
+
+              _gallery = angular.element "<div>"
+              _gallery.addClass "photo-gallery #{mode} #{guid}"
+
+              _finalContainer.append _gallery
+            else
+              _finalContainer.append elem
+
+        _content = _finalContainer.html()
+
         # Serialize
         data =
           title: _title
@@ -197,6 +229,7 @@ angular.module('shockApp')
           tags: _t
           content: _content
           photos: _p
+          galleries: _g
 
         # Send
         req = $http

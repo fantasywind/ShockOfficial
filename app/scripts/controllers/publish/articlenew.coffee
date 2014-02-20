@@ -14,6 +14,9 @@ angular.module('shockApp')
     $scope.editorMode = $routeParams.mode
     $scope.editArticleId = $routeParams.articleId
 
+    $scope.mainContent = '<p></p>'
+    _editor = null
+
     switch $routeParams.mode
       when 'edit'
         $scope.modeTitle = 'EDIT_ARTICLE'
@@ -41,6 +44,7 @@ angular.module('shockApp')
             # Cache for waiting categories loaded
             $scope.articleCategory = resp.article.category
           $scope.mainContent = resp.article.content
+          console.log resp.article.content
         else
           console.error "Get edit auth fail."
           $location.path('/publish/article').search
@@ -53,7 +57,8 @@ angular.module('shockApp')
     $scope.$watch 'category', (newVal)->
       newArticle.setCategory newVal
     $scope.$watch 'mainContent', (newVal)->
-      newArticle.setContent newVal
+      _editor = angular.element 'div.editor-content' if _editor is null or _editor.length is 0
+      newArticle.setContent _editor.html()
 
     $scope.$watch 'isInterview', (newStatus)->
       newArticle.setIsInterview newStatus
@@ -85,6 +90,11 @@ angular.module('shockApp')
     # Submit
     $scope.submit = ->
       return false if _submitting
+
+      # Refresh main content
+      _editor = angular.element 'div.editor-content' if _editor is null or _editor.length is 0
+      newArticle.setContent _editor.html()
+
       _submitting = true
       $scope.successPost = false
       newArticle.submit()

@@ -1,4 +1,4 @@
-sanitizer = require 'sanitizer'
+sanitizer = require 'sanitize-caja'
 mongoose = require 'mongoose'
 ArticleCategory = mongoose.model 'ArticleCategory'
 Article = mongoose.model 'Article'
@@ -93,7 +93,7 @@ exports.categories = (req, res)->
     res.json categories
 
 exports.newArticle = (req, res)->
-  checklist = ['title', 'content', 'category_id', 'tags', 'authors']
+  checklist = ['title', 'content', 'category_id', 'authors']
   for checker in checklist
     if !req.body[checker]?
       return res.json
@@ -102,13 +102,14 @@ exports.newArticle = (req, res)->
         msg: "Invalid Parameter"
 
   # Sanitizer
-  req.body.title = sanitizer.sanitize req.body.title
-  req.body.content = sanitizer.sanitize req.body.content
+  req.body.title = sanitizer req.body.title
+  req.body.content = sanitizer req.body.content
 
   article = new Article
     title: req.body.title
     content: req.body.content
     category: req.body.category_id
+    gallery: req.body.galleries or []
 
   for author in req.body.authors
     if author.type is 'self'
@@ -116,7 +117,7 @@ exports.newArticle = (req, res)->
     else if author.member_id?
       article.author.push author.member_id
     else
-      article.author_external.push sanitizer.sanitize author.name
+      article.author_external.push sanitizer author.name
 
   article.photo = req.body.photos if req.body.photos
 
@@ -127,7 +128,7 @@ exports.newArticle = (req, res)->
       status: true
 
   # Append tags
-  for tag in req.body.tags
+  for tag in req.body.tags or []
     appendTag tag, article
 
 exports.articleList = (req, res)->
