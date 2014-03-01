@@ -15,6 +15,8 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  grunt.loadNpmTasks('grunt-karma');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -134,6 +136,13 @@ module.exports = function (grunt) {
             '<%= yeoman.views %>/*',
             '<%= yeoman.dist %>/*',
             '!<%= yeoman.dist %>/.git*'
+          ]
+        }]
+      },
+      test: {
+        files: [{
+          src: [
+            '.tmp'
           ]
         }]
       },
@@ -508,7 +517,8 @@ module.exports = function (grunt) {
         'compass:server'
       ],
       test: [
-        'compass'
+        'compass',
+        'coffee:test'
       ],
       dist: [
         'compass:dist',
@@ -579,7 +589,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('test', [
-    'clean:server',
+    'clean:test',
     'concurrent:test',
     'autoprefixer',
     'karma'
